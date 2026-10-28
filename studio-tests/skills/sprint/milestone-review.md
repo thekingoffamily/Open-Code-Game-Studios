@@ -14,7 +14,7 @@ FOUND or ABSENT; a section whose inputs are absent reads
 that as the whole verdict. In full review mode it spawns `producer` with the
 PR-MILESTONE gate before the Go/No-Go recommendation is generated; the
 producer's verdict (ON TRACK / AT RISK / OFF TRACK) is shown inline, and AT RISK
-or OFF TRACK raises an `AskUserQuestion` on how to frame the recommendation. In
+or OFF TRACK raises an `question` on how to frame the recommendation. In
 lean and solo modes the gate is skipped with a note. The skill asks "May I write
 this to `production/milestones/[milestone-name]-review.md`?" before persisting.
 Verdicts: COMPLETE (review saved), BLOCKED (write declined), or
@@ -26,7 +26,7 @@ Verdicts: COMPLETE (review saved), BLOCKED (write declined), or
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: COMPLETE, BLOCKED, NOT ASSESSED
 - [ ] Contains Go/No-Go recommendation values: GO, CONDITIONAL GO, NO-GO
@@ -42,7 +42,7 @@ Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 | PR-MILESTONE  | Before the Go/No-Go recommendation is generated | full only (not lean/solo) |
 
 PR-MILESTONE verdicts: ON TRACK / AT RISK / OFF TRACK — or NOT ASSESSED
-[missing input] (`.claude/docs/director-gates.md`), on which the skill never
+[missing input] (`.opencode/docs/director-gates.md`), on which the skill never
 recommends GO.
 
 ---
@@ -51,7 +51,7 @@ recommends GO.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -90,7 +90,7 @@ Fixture defaults.
 **Assertions:**
 - [ ] The deferred feature is not listed under Fully Complete and is not counted as complete in the completion percentage (7 of 8)
 - [ ] PR-MILESTONE is spawned in full mode before the Go/No-Go recommendation, with completion percentage and blocked story count passed
-- [ ] The producer's ON TRACK verdict appears inline in the Go/No-Go section, and no framing `AskUserQuestion` is raised (only AT RISK and OFF TRACK raise one)
+- [ ] The producer's ON TRACK verdict appears inline in the Go/No-Go section, and no framing `question` is raised (only AT RISK and OFF TRACK raise one)
 - [ ] Skill asks "May I write" before writing, naming `production/milestones/milestone-03-review.md`
 - [ ] Verdict is COMPLETE after the write
 
@@ -116,7 +116,7 @@ Fixture defaults.
    the Blocked table with their blockers
 2. Skill spawns PR-MILESTONE, passing a completion percentage of 40% and a
    blocked story count of 3
-3. On OFF TRACK, skill asks via `AskUserQuestion`: "Producer verdict: OFF TRACK.
+3. On OFF TRACK, skill asks via `question`: "Producer verdict: OFF TRACK.
    The milestone is in jeopardy. This review will recommend NO-GO. How do you
    want to proceed?" with [A] Accept NO-GO, [B] Override to CONDITIONAL GO,
    [C] Stop
@@ -126,7 +126,7 @@ Fixture defaults.
 **Assertions:**
 - [ ] Each blocked feature is named in the Blocked table with its blocker, taken from its story's `BLOCKED:` note — the sprint reports carry none, so a blocker not read from the story files is invented
 - [ ] PR-MILESTONE receives the blocked story count (3), counted from the story files
-- [ ] OFF TRACK raises the `AskUserQuestion` with Accept NO-GO / Override to CONDITIONAL GO / Stop before the recommendation is generated
+- [ ] OFF TRACK raises the `question` with Accept NO-GO / Override to CONDITIONAL GO / Stop before the recommendation is generated
 - [ ] After [A], the recommendation is NO-GO — the skill does not issue GO against an OFF TRACK verdict
 - [ ] "May I write" prompt still appears before the file is written
 
@@ -147,7 +147,7 @@ Fixture defaults.
 **Expected behavior:**
 1. Skill compiles the review
 2. PR-MILESTONE returns AT RISK with mitigations
-3. Skill asks via `AskUserQuestion`: "Producer verdict: AT RISK. Milestone may
+3. Skill asks via `question`: "Producer verdict: AT RISK. Milestone may
    slip. How should the Go/No-Go section be framed?" with [A] CONDITIONAL GO,
    [B] NO-GO, [C] GO
 4. User selects [A]; the Go/No-Go section reads CONDITIONAL GO and lists the
@@ -156,7 +156,7 @@ Fixture defaults.
 
 **Assertions:**
 - [ ] The producer's AT RISK assessment, including its scope-drift finding, is shown inline in the Go/No-Go section — not suppressed
-- [ ] AT RISK raises the `AskUserQuestion` with CONDITIONAL GO / NO-GO / GO before the file is written
+- [ ] AT RISK raises the `question` with CONDITIONAL GO / NO-GO / GO before the file is written
 - [ ] After [A], the recommendation is CONDITIONAL GO and its Conditions list carries the producer's conditions
 - [ ] The review is written only after "May I write" is approved
 
@@ -180,7 +180,7 @@ Fixture defaults.
    `NOT ASSESSED — NO DATA` as the whole verdict
 3. The report names what was missing and where it comes from: sprint reports
    are written by `/sprint-plan`; milestone definitions are authored by hand
-   from `.claude/docs/templates/milestone-definition.md`
+   from `.opencode/docs/templates/milestone-definition.md`
 4. No milestone definition is fabricated, no gate is spawned, no file is written
 
 **Assertions:**

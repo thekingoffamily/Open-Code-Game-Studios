@@ -10,8 +10,8 @@ No gate IDs assigned.
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references game mechanics / player systems)
-- [ ] `tools:` list includes Read, Write, Edit, Bash, Glob, Grep — excludes tools only needed by orchestration agents
-- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] `permission:` list includes Read, Write, Edit, Bash, Glob, Grep — excludes tools only needed by orchestration agents
+- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.opencode/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over UI, AI behavior, or engine/rendering code
 
 ---

@@ -1,7 +1,7 @@
 # Agent Test Spec: devops-engineer
 
 ## Agent Summary
-- **Domain**: CI/CD pipeline configuration, build scripts, version control workflow and branching strategy (trunk-based, per `CLAUDE.md`), release tagging scheme, automated test integration in CI, artifact management, environment management
+- **Domain**: CI/CD pipeline configuration, build scripts, version control workflow and branching strategy (trunk-based, per `AGENTS.md`), release tagging scheme, automated test integration in CI, artifact management, environment management
 - **Does NOT own**: Game code or assets, technology stack decisions and server infrastructure changes (technical-director approves), security audits (security-engineer), QA test strategy (qa-lead), game networking logic (network-programmer)
 - **Gate IDs**: None; reports to technical-director and escalates build-time and infrastructure concerns there
 
@@ -10,8 +10,8 @@
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references CI/CD, build, deployment, version control)
-- [ ] `tools:` reads `Read, Glob, Grep, Write, Edit, Bash` — Bash to run builds and pipelines; game code and assets are excluded by the body's "What This Agent Must NOT Do" list, not by the tool list
-- [ ] Model tier is `sonnet` — frontmatter `model:` reads exactly `sonnet` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] `permission:` reads `Read, Glob, Grep, Write, Edit, Bash` — Bash to run builds and pipelines; game code and assets are excluded by the body's "What This Agent Must NOT Do" list, not by the tool list
+- [ ] Model tier is `sonnet` — frontmatter `model:` reads exactly `sonnet` (tiers: `.opencode/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over game logic, security audits, or QA test design
 - [ ] Its Implementation Workflow questions are pipeline questions (which platforms, engine version and export presets CI builds; where build secrets and signing keys live) — none asks how game code should be structured
 
@@ -48,11 +48,11 @@
 ### Case 4: Branching strategy conflict
 **Input**: "Half the team wants to use GitFlow with long-lived feature branches. The other half wants trunk-based development. How should we set this up?"
 **Expected behavior**:
-- Recommends trunk-based development because `CLAUDE.md` names it under Version Control ("Git with trunk-based development"), and says that is the model it followed
+- Recommends trunk-based development because `AGENTS.md` names it under Version Control ("Git with trunk-based development"), and says that is the model it followed
 - Explains the model as its Branching Strategy section defines it: `main` is the always-shippable trunk, built and tested by CI on every push and pull request; work happens on short-lived branches merged back within a day or two through a pull request that passes CI; unfinished work ships dark behind a feature flag
 - Rejects GitFlow's long-lived branches specifically — there is no long-lived integration branch beside `main`
 - Covers releases and hotfixes per the same section: a release is a tag on `main`; a `release/*` branch is cut only to stabilise a release (bug fixes only, every fix also lands on `main`); a `hotfix/*` branch starts from the release tag (or its `release/*` branch, if one exists) and merges back to `main`, and to that `release/*` branch only if it exists
-- Does NOT present this as a 50/50 choice, and does not adopt GitFlow on its own authority — the model comes from `CLAUDE.md`'s Version Control line, so switching means changing that line
+- Does NOT present this as a 50/50 choice, and does not adopt GitFlow on its own authority — the model comes from `AGENTS.md`'s Version Control line, so switching means changing that line
 
 ### Case 5: Context pass — platform-specific build matrix
 **Input context**: Project targets PC (Windows, Linux), Nintendo Switch, and PlayStation 5. CI runs on GitHub-hosted runners, which have no console export templates or SDKs installed.
@@ -69,7 +69,7 @@
 
 - [ ] Stays within declared domain (CI/CD, build scripts, version control, artifacts, environments)
 - [ ] Declines game code and networking requests and names who takes them (`lead-programmer` / `technical-director`, or the owning programmer)
-- [ ] Recommends trunk-based development when branching strategy is contested, citing `CLAUDE.md`'s Version Control line
+- [ ] Recommends trunk-based development when branching strategy is contested, citing `AGENTS.md`'s Version Control line
 - [ ] Returns structured pipeline configurations (YAML, scripts), not freeform advice, and asks before writing them
 - [ ] Never skips CI or test steps to get a green build, and routes infrastructure changes to technical-director for approval
 

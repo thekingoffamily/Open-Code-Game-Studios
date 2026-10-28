@@ -1,6 +1,6 @@
 # Studio Tests
 
-Quality assurance infrastructure for the **Claude Code Game Studios** framework.
+Quality assurance infrastructure for the **OpenCode Game Studios** framework.
 Tests the skills and agents themselves — not any game built with them.
 
 **This ships as part of the template, and it is meant to.** CCGS is a template
@@ -30,7 +30,7 @@ you write. Driven by `/skill-test` and `/skill-improve`.
 ```
 studio-tests/
 ├── README.md              ← you are here
-├── CLAUDE.md              ← tells Claude how to use this framework
+├── AGENTS.md              ← tells opencode how to use this framework
 ├── catalog.yaml           ← master registry: all 74 skills + 49 agents, coverage tracking
 ├── quality-rubric.md      ← category-specific pass/fail metrics for /skill-test category
 │

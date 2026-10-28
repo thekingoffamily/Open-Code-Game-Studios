@@ -10,7 +10,7 @@ and `design/gdd/game-concept.md` (absent → `/brainstorm`; at `minimal` the
 one-page `design/game-brief.md` stands in). It extracts a Technical Requirements
 Baseline (`TR-[system]-[NNN]`) from the requirement-bearing sections of every
 GDD, inventories existing ADRs from their headers, and shows an Engine Knowledge
-Gap Inventory with an `AskUserQuestion` before authoring.
+Gap Inventory with an `question` before authoring.
 
 Phases 1–4 (layer map, module ownership, data flow, API boundaries) are each
 presented and approved. Phase 5 audits existing ADRs and maps every baseline
@@ -33,10 +33,10 @@ chosen; with no document yet, they offer the full walkthrough instead.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains sign-off verdict keywords in the gates' own words: `APPROVE`, `CONCERNS`, `FEASIBLE`, and the `REVISED after …` records
-- [ ] Contains ask-before-write language: write approvals via `AskUserQuestion` ("May I write the master architecture document?", "May I update the Document Status section…")
+- [ ] Contains ask-before-write language: write approvals via `question` ("May I write the master architecture document?", "May I update the Document Status section…")
 - [ ] Has a next-step handoff at the end (`/architecture-decision`, `/architecture-review`, `/create-control-manifest`)
 - [ ] Documents one consistent write model for `docs/architecture/architecture.md` — when the file is first created and when each approved section is written
 - [ ] Documents gate behavior: TD-ARCHITECTURE + LP-FEASIBILITY in full mode; each skipped in lean/solo with a named note
@@ -53,7 +53,7 @@ Review mode comes from the resolved `review_mode` (`modes.review_mode` in
 In `full` mode: after `docs/architecture/architecture.md` is written, TD-ARCHITECTURE
 (`technical-director`) and LP-FEASIBILITY (`lead-programmer`) review it. Each is
 a spawned agent that reads its own gate file
-(`.claude/docs/director-gates/td-architecture.md`, `lp-feasibility.md`); their
+(`.opencode/docs/director-gates/td-architecture.md`, `lp-feasibility.md`); their
 inputs are independent, so they spawn together and both verdicts are collected
 before Step 3 presents them. The parent never reads those files: it passes
 TD-ARCHITECTURE the document path, the Technical Requirements Baseline (TR-IDs
@@ -71,7 +71,7 @@ skipped — Solo mode."
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -104,9 +104,9 @@ Fixture defaults.
 
 **Assertions:**
 - [ ] The baseline uses `TR-[system]-[NNN]` IDs and is built from the scanned GDD sections, not whole-file reads
-- [ ] The knowledge gap inventory and its three-option `AskUserQuestion` come before Phase 1
+- [ ] The knowledge gap inventory and its three-option `question` come before Phase 1
 - [ ] Each section is shown before its approval is asked
-- [ ] The master document is written only after the Phase 7 `AskUserQuestion` approval
+- [ ] The master document is written only after the Phase 7 `question` approval
 - [ ] TD-ARCHITECTURE and LP-FEASIBILITY are each spawned as agents (`technical-director`, `lead-programmer`) after the document is written, and both verdicts are collected before Step 3
 - [ ] TD-ARCHITECTURE is passed its four context items by name; the parent session does not read the gate file
 - [ ] The Document Status sign-off is written only after the "May I update" approval
@@ -128,7 +128,7 @@ Fixture defaults.
 
 **Expected behavior:**
 1. Step 3 shows the Technical Director assessment and the Lead Programmer verdict side by side, including the specific concern
-2. `AskUserQuestion`: `Accept — proceed to handoff` / `Revise flagged items first` / `Discuss specific concerns`
+2. `question`: `Accept — proceed to handoff` / `Revise flagged items first` / `Discuss specific concerns`
 3. If Accept: the proposed Document Status reads `LP-FEASIBILITY: [date] — CONCERNS (accepted)`, and is applied only after "May I update the Document Status section…" is answered yes
 4. If Revise: the flagged section is re-drafted and approved as in Phases 1–4, the revised document is written once through Phase 7's ask, and the status then reads `LP-FEASIBILITY: [date] — REVISED after CONCERNS`
 5. The skill does not record `FEASIBLE` for a review that returned CONCERNS
@@ -181,7 +181,7 @@ Fixture defaults.
 **Expected behavior:**
 1. Both reviews are spawned in parallel at Phase 7b
 2. Step 3 shows `TD-ARCHITECTURE: REJECT` and `LP-FEASIBILITY: FEASIBLE` side by side
-3. The `AskUserQuestion` offers `Revise flagged items first` and `Discuss specific concerns` — **not** `Accept`
+3. The `question` offers `Revise flagged items first` and `Discuss specific concerns` — **not** `Accept`
 4. On `Revise flagged items first`, the flagged sections are re-drafted and approved as in Phases 1–4, and the revised document is written once, through Phase 7's ask
 5. Nothing is recorded as approved; Step 4 records `REVISED after REJECT`, and the handoff's first line carries the same value
 
@@ -294,7 +294,7 @@ Fixture defaults.
 
 - [ ] Stops before authoring when the engine is missing, or on a `standard`/`full` project when the systems index or game concept is missing; at `minimal` it proceeds from `design/game-brief.md` and stops only when that is absent too
 - [ ] Every section is shown in full before its approval is asked
-- [ ] Write approvals use `AskUserQuestion` with labeled options, not plain-text asks
+- [ ] Write approvals use `question` with labeled options, not plain-text asks
 - [ ] Follows one consistent write model for `docs/architecture/architecture.md`, and never replaces an existing one without the user choosing to
 - [ ] TD-ARCHITECTURE and LP-FEASIBILITY run only in full mode; lean/solo print a skip note naming each gate and the mode
 - [ ] The Document Status sign-off is recorded only after the "May I update" approval

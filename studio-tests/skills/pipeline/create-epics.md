@@ -28,7 +28,7 @@ at the gate, or no eligible systems found).
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: COMPLETE, BLOCKED
 - [ ] Contains "May I write" collaborative protocol language (per-epic approval)
@@ -39,10 +39,10 @@ Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
 ## Director Gate Checks
 
-In `full` mode: PR-EPIC (`producer`, `.claude/docs/director-gates/pr-epic.md`)
+In `full` mode: PR-EPIC (`producer`, `.opencode/docs/director-gates/pr-epic.md`)
 runs once all epics for the current layer are defined and before any epic file is
 written. Verdicts: REALISTIC → proceed to the write asks; CONCERNS →
-`AskUserQuestion` with `[A] Proceed as planned` / `[B] Revise epic boundaries` /
+`question` with `[A] Proceed as planned` / `[B] Revise epic boundaries` /
 `[C] Stop`; UNREALISTIC → offer to split or merge epics, revise, present the
 revised epics again, and re-run the gate before writing. CONCERNS `[B]` likewise
 re-presents the revised epics before the gate re-runs. NOT ASSESSED [missing
@@ -60,7 +60,7 @@ In `solo` mode: PR-EPIC is skipped. Output notes: "PR-EPIC skipped — Solo mode
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -212,7 +212,7 @@ Fixture defaults.
 **Expected behavior:**
 1. PR-EPIC is spawned and returns CONCERNS with specific feedback
 2. Skill presents the producer's assessment before any write ask
-3. `AskUserQuestion`: "Producer raised concerns about the epic structure. How do
+3. `question`: "Producer raised concerns about the epic structure. How do
    you want to proceed?" with `[A] Proceed as planned — I accept the producer's
    concerns` / `[B] Revise epic boundaries — split or merge as recommended` /
    `[C] Stop — I want to reconsider the scope`

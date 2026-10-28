@@ -9,11 +9,11 @@
 
 ## Static Assertions (Structural)
 
-Verified by reading the agent's `.claude/agents/lead-programmer.md` frontmatter:
+Verified by reading the agent's `.opencode/agents/lead-programmer.md` frontmatter:
 
 - [ ] `description:` field is present and domain-specific (references code architecture, feasibility, code review, coding standards — not generic)
-- [ ] `tools:` includes Read for source files and Bash for static analysis or test runs; Write/Edit are gated in the body — every write waits for the user's "yes", and the orchestrated-run exception covers only new artifacts under `production/`, `docs/` or `tests/`
-- [ ] Model tier is `sonnet` — frontmatter `model:` reads exactly `sonnet` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] `permission:` includes Read for source files and Bash for static analysis or test runs; Write/Edit are gated in the body — every write waits for the user's "yes", and the orchestrated-run exception covers only new artifacts under `production/`, `docs/` or `tests/`
+- [ ] Model tier is `sonnet` — frontmatter `model:` reads exactly `sonnet` (tiers: `.opencode/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over game design, creative direction, or production scheduling
 
 ---

@@ -4,7 +4,7 @@
 
 `/project-stage-detect [role]` determines the project's development stage and
 its gaps. It starts with a deterministic pass (`bash
-.claude/scripts/artifact-check.sh`, which reports PRESENT / ABSENT / SHORT /
+.opencode/scripts/artifact-check.sh`, which reports PRESENT / ABSENT / SHORT /
 PATTERN_MISS / NO_CHECK per artifact), then scans `design/`, the code root,
 `production/`, `prototypes/`, `docs/architecture/` and `tests/`.
 
@@ -36,7 +36,7 @@ director gates apply.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains all seven stage names: Concept, Systems Design, Technical Setup, Pre-Production, Production, Polish, Release
 - [ ] Contains the Stage Confidence values PASS, CONCERNS, NOT ASSESSED and FAIL, with a first-match order
@@ -56,7 +56,7 @@ None. `/project-stage-detect` is a diagnostic utility. It spawns no agents
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -78,7 +78,7 @@ Fixture defaults.
 **Input:** `/project-stage-detect`
 
 **Expected behavior:**
-1. Skill runs `bash .claude/scripts/artifact-check.sh` before hand-scanning
+1. Skill runs `bash .opencode/scripts/artifact-check.sh` before hand-scanning
 2. Skill reads the configured stage `Production` from `project.yaml`
 3. Skill still runs the heuristics; 24 source files (10+) indicate Production
 4. Report states the configured and observed stages agree; Stage Confidence is PASS
@@ -209,7 +209,7 @@ Fixture defaults.
 
 **Fixture:**
 - No `project.stage`, no `production/stage.txt`
-- `project.yaml` has no `engine.name`; `.claude/docs/technical-preferences.md`
+- `project.yaml` has no `engine.name`; `.opencode/docs/technical-preferences.md`
   reads `[TO BE CONFIGURED]`
 - Both `src/` and `Assets/` exist, each holding source files (ambiguous tree)
 - `design/gdd/game-concept.md` and `design/gdd/systems-index.md` exist, with a

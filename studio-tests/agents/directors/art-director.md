@@ -9,11 +9,11 @@
 
 ## Static Assertions (Structural)
 
-Verified by reading the agent's `.claude/agents/art-director.md` frontmatter:
+Verified by reading the agent's `.opencode/agents/art-director.md` frontmatter:
 
 - [ ] `description:` field is present and domain-specific (references visual identity, art bible, asset standards — not generic)
-- [ ] `tools:` includes Read (which also opens images for visual review) and Write/Edit for the art bible it maintains, and no Bash — `disallowedTools:` blocks it
-- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] `permission:` includes Read (which also opens images for visual review) and Write/Edit for the art bible it maintains, and no Bash — `permission.bash:` blocks it
+- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.opencode/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over UX interaction flows or audio direction
 
 ---
@@ -65,7 +65,7 @@ Verified by reading the agent's `.claude/agents/art-director.md` frontmatter:
 - [ ] Verdict token is `AD-VISUAL: REJECT`, with rationale traceable to specific lines or rules in the provided context
 
 ### Case 6: Missing gate input — NOT ASSESSED
-**Scenario:** A complete, internally consistent art bible is submitted for sign-off with the pillars and the visual identity anchor, but no platform or performance constraints: the context gives none, `project.yaml` sets no `platform.*` or `performance.*` keys, and `.claude/docs/technical-preferences.md` still holds only unconfigured placeholders. Request is tagged AD-ART-BIBLE.
+**Scenario:** A complete, internally consistent art bible is submitted for sign-off with the pillars and the visual identity anchor, but no platform or performance constraints: the context gives none, `project.yaml` sets no `platform.*` or `performance.*` keys, and `.opencode/docs/technical-preferences.md` still holds only unconfigured placeholders. Request is tagged AD-ART-BIBLE.
 **Expected:** Returns `AD-ART-BIBLE: NOT ASSESSED`, naming the platform and performance constraints as the input it could not read — without them, the gate's check that the asset standards are achievable on the platform cannot be made.
 **Assertions:**
 - [ ] Verdict token is `AD-ART-BIBLE: NOT ASSESSED` — not APPROVE, although every section it could check is sound

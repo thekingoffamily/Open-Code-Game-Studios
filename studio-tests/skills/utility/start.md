@@ -36,7 +36,7 @@ brief present) skips onboarding. No director gates apply. Verdict: COMPLETE.
 
 Checked against the SKILL.md by `/skill-test spec`, no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keyword: COMPLETE
 - [ ] States the write rule for every write: the stage and an inferred rigor only after an explicit yes to the save question that names `project.yaml` and `production/stage.txt`; `modes.automation` from the user's pick, and never when the save was declined
@@ -55,7 +55,7 @@ point this skill runs.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -158,7 +158,7 @@ Fixture defaults.
 **Fixture:**
 - Fresh project as in Case 1
 - `.git/config` has `[remote "origin"]` with url
-  `https://github.com/Donchitos/Claude-Code-Game-Studios.git`
+  `https://github.com/Donchitos/opencode-Code-Game-Studios.git`
 - The user picks `B) Vague idea` with the hint "a small weekend puzzler", then `Save them`
 
 **Input:** `/start`

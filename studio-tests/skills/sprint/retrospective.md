@@ -29,7 +29,7 @@ the write).
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: COMPLETE, BLOCKED
 - [ ] Contains "May I write" language (skill writes retrospective document)
@@ -47,7 +47,7 @@ None. Retrospectives are team self-reflection documents; no gates are invoked.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -106,7 +106,7 @@ Fixture defaults.
 **Expected behavior:**
 1. Skill finds no sprint plan for sprint-009
 2. Skill outputs "No sprint data found for sprint-009 …"
-3. Skill asks via `AskUserQuestion`: [A] Provide data manually, [B] Stop
+3. Skill asks via `question`: [A] Provide data manually, [B] Stop
 4. User selects [A] and describes the sprint's tasks, dates and outcomes
 5. Skill uses that input as the source of truth and formats it into the
    retrospective structure
@@ -114,7 +114,7 @@ Fixture defaults.
 
 **Assertions:**
 - [ ] Skill does not crash or produce an empty document when the sprint file is absent, and states that no sprint data was found for sprint-009
-- [ ] `AskUserQuestion` offers [A] Provide data manually and [B] Stop — not [C] Look back over the closed stories, which is offered only at `workflow: minimal`
+- [ ] `question` offers [A] Provide data manually and [B] Stop — not [C] Look back over the closed stories, which is offered only at `workflow: minimal`
 - [ ] Manual input is formatted into the retrospective structure (What Went Well / What Went Poorly / Action Items for Next Iteration)
 - [ ] "May I write" prompt still appears before the file write
 
@@ -133,7 +133,7 @@ Fixture defaults.
 **Expected behavior:**
 1. Before loading any sprint data, skill globs
    `production/retrospectives/retro-sprint-005-*.md` and finds the existing file
-2. Skill asks via `AskUserQuestion`: "An existing retrospective was found:
+2. Skill asks via `question`: "An existing retrospective was found:
    [filename]. How do you want to proceed?" with [A] Update existing and
    [B] Start fresh (archive the old one)
 3. User selects [B]; skill compiles from a blank slate — the old file is not
@@ -214,7 +214,7 @@ Fixture defaults.
 
 **Expected behavior:**
 1. Skill finds no retrospective and no sprint data for sprint-001
-2. At `workflow: minimal`, skill asks via `AskUserQuestion` with three options:
+2. At `workflow: minimal`, skill asks via `question` with three options:
    [A] Provide data manually, [B] Stop, [C] Look back over the closed stories
 3. User selects [C]; skill reads the 3 `Complete` stories and continues to
    Phase 3

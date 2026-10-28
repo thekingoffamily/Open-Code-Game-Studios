@@ -4,7 +4,7 @@
 
 `/release-checklist [platform: pc|console|mobile|all]` builds a pre-release
 checklist scoped to the project. It resolves `modes.rigor`, `modes.workflow`,
-`project.stage` and `platform.cert_tier`, reads `CLAUDE.md` and the current
+`project.stage` and `platform.cert_tier`, reads `AGENTS.md` and the current
 milestone in `production/milestones/`, and reads open bugs from
 `production/qa/bugs/` (Severity and Status lines). The bug items use the release
 gate's thresholds for the resolved `workflow` — an open S1, S2 or S3 fails at
@@ -36,7 +36,7 @@ then asks "May I write this to
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: READY, NOT READY, NOT ASSESSED
 - [ ] Contains "May I write" language before writing the checklist
@@ -57,7 +57,7 @@ advancement is `/gate-check`.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -77,7 +77,7 @@ Fixture defaults.
 **Input:** `/release-checklist pc`
 
 **Expected behavior:**
-1. Skill reads `CLAUDE.md` and the current milestone
+1. Skill reads `AGENTS.md` and the current milestone
 2. Codebase Health states the denominator: `scanned 40 source files: 3 TODO, 1
    FIXME, 0 HACK`, listing the FIXME
 3. The PC device block is emitted; no Console or Mobile device block
@@ -159,7 +159,7 @@ Fixture defaults.
 **Expected behavior:**
 1. The code root is unresolved, so no scan runs
 2. Codebase Health reads `NOT ASSESSED — code root unresolved`
-   (`.claude/docs/code-root-resolution.md`), not `0` TODO/FIXME/HACK
+   (`.opencode/docs/code-root-resolution.md`), not `0` TODO/FIXME/HACK
 3. The test line reads `Test results: NOT ASSESSED — no test output or CI logs
    found` rather than being omitted
 4. The rest of the checklist is still generated and offered for writing

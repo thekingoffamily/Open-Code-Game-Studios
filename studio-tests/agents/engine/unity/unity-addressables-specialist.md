@@ -10,8 +10,8 @@ No gate IDs assigned.
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references Addressables / asset loading / content catalogs / remote delivery)
-- [ ] `tools:` list includes Read, Write, Edit, Bash, Glob, Grep
-- [ ] Model tier is `sonnet` — frontmatter `model:` reads exactly `sonnet` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] `permission:` list includes Read, Write, Edit, Bash, Glob, Grep
+- [ ] Model tier is `sonnet` — frontmatter `model:` reads exactly `sonnet` (tiers: `.opencode/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over rendering systems or gameplay using the loaded assets
 
 ---

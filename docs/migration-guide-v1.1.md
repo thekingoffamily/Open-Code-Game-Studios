@@ -6,7 +6,7 @@ This guide covers converting an **existing project's config files** to
 files* changed between releases and whether they're safe to overwrite. This
 guide covers your *project's own data*: the values you configured in
 `production/stage.txt`, `production/review-mode.txt`, and
-`.claude/docs/technical-preferences.md`.
+`.opencode/docs/technical-preferences.md`.
 
 If you're setting up a **brand-new** project on v1.1, you don't need this —
 `/start` writes `project.yaml` directly and none of the legacy files apply.
@@ -20,7 +20,7 @@ exist at your repo root, and at least one of these does:
 
 - `production/stage.txt`
 - `production/review-mode.txt`
-- `.claude/docs/technical-preferences.md` with real values (a copy still
+- `.opencode/docs/technical-preferences.md` with real values (a copy still
   full of `[TO BE CONFIGURED]` placeholders is the untouched template
   default, not migratable data, and doesn't count)
 
@@ -67,11 +67,11 @@ it for you, or you can run it yourself:
 
 ```bash
 # 1. Preview — writes nothing, just reports what it would do
-bash .claude/scripts/migrate-v1-config.sh --dry-run
+bash .opencode/scripts/migrate-v1-config.sh --dry-run
 
 # 2. Migrate — writes project.yaml + production/migration-report.md
 #    Every legacy file is left in place, untouched.
-bash .claude/scripts/migrate-v1-config.sh
+bash .opencode/scripts/migrate-v1-config.sh
 
 # 3. Read the report before finalizing
 cat production/migration-report.md
@@ -79,7 +79,7 @@ cat production/migration-report.md
 # 4. Finalize — deletes legacy files, ONLY after re-verifying each one's
 #    value made it into project.yaml. Refuses (exit 4) and deletes nothing
 #    on any mismatch.
-bash .claude/scripts/migrate-v1-config.sh --finalize
+bash .opencode/scripts/migrate-v1-config.sh --finalize
 ```
 
 Step 4 is optional and separate on purpose. Skipping it is completely fine —
@@ -132,4 +132,4 @@ remove or back up the other, then re-run `--dry-run`.
 
 For the new settings that didn't exist in v1.0 (`modes.rigor` above all),
 see the [Configuration section of the README](../README.md#configuration)
-and the full spec in `.claude/docs/effects-map.md`.
+and the full spec in `.opencode/docs/effects-map.md`.

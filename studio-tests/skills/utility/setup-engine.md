@@ -8,8 +8,8 @@ argument for guided selection. For Godot it asks which language (GDScript, C#
 or Both) before showing the Technology Stack. It then:
 
 - writes the Technology Stack and the `ENGINE-REFERENCE-IMPORT` line to
-  `CLAUDE.md` after "May I write these engine settings to `CLAUDE.md`?"
-- fills `.claude/docs/technical-preferences.md` (the legacy mirror: naming
+  `AGENTS.md` after "May I write these engine settings to `AGENTS.md`?"
+- fills `.opencode/docs/technical-preferences.md` (the legacy mirror: naming
   conventions, specialist routing table, input/platform, performance budgets)
   after the user approves the presented defaults
 - dual-writes the `engine`, `specialists`, `naming` and `commands` blocks to
@@ -29,10 +29,10 @@ engine is configured.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keyword: COMPLETE
-- [ ] Contains "May I write" language before writing `CLAUDE.md` and before writing the `project.yaml` blocks
+- [ ] Contains "May I write" language before writing `AGENTS.md` and before writing the `project.yaml` blocks
 - [ ] Has a next-step handoff (Section 12 prints one tier-matched Next-Steps list, e.g. `/brainstorm` at `minimal`)
 
 ---
@@ -47,7 +47,7 @@ None. `/setup-engine` is a technical configuration skill. No director gates appl
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -67,7 +67,7 @@ Fixture defaults.
 **Expected behavior:**
 1. Full-spec mode: Section 2's guided selection is skipped
 2. Skill asks the Godot language question (A GDScript / B C# / C Both); user picks GDScript
-3. Skill shows the Technology Stack and asks "May I write these engine settings to `CLAUDE.md`?"
+3. Skill shows the Technology Stack and asks "May I write these engine settings to `AGENTS.md`?"
 4. Technical preferences are presented with GDScript naming (snake_case files and
    variables) and the A3 routing table: `.gd` → godot-gdscript-specialist,
    `.gdshader` → godot-shader-specialist, `.tscn` → godot-specialist
@@ -88,7 +88,7 @@ Fixture defaults.
 - [ ] `naming.variables` and `naming.files` are `snake_case`
 - [ ] Routing table includes `.gd`, `.gdshader`, and `.tscn` entries; `specialists.code` is `godot-gdscript-specialist`
 - [ ] The rendering/physics shape is asked, not inferred from the engine name
-- [ ] "May I write" is asked before `CLAUDE.md` and before `project.yaml` are written
+- [ ] "May I write" is asked before `AGENTS.md` and before `project.yaml` are written
 - [ ] Knowledge Risk is HIGH — the Section 6 table's cutoff is May 2025 and its Godot row ~4.3, as in the shipped VERSION.md
 - [ ] Verdict is COMPLETE
 
@@ -104,7 +104,7 @@ Fixture defaults.
 
 **Expected behavior:**
 1. Engine-only mode: version looked up and confirmed with the user
-2. No language question (Unity is C#); CLAUDE.md Language is `C#`
+2. No language question (Unity is C#); AGENTS.md Language is `C#`
 3. Naming: PascalCase classes/methods, `_camelCase` private fields
 4. Routing: `.cs` → unity-specialist, `.shader`/`.shadergraph` → unity-shader-specialist,
    `.unity`/`.prefab` → unity-specialist, `.uxml`/`.uss` → unity-ui-specialist
@@ -132,7 +132,7 @@ Fixture defaults.
 **Input:** `/setup-engine unreal 5.8`
 
 **Expected behavior:**
-1. The primary-language question defaults to C++, so CLAUDE.md Language reads
+1. The primary-language question defaults to C++, so AGENTS.md Language reads
    `C++ (primary), Blueprint (gameplay prototyping)` — the line follows the
    answer, and a Blueprint-primary answer would write
    `Blueprint (primary), C++ where needed`
@@ -141,7 +141,7 @@ Fixture defaults.
    `specialists.additional` includes ue-blueprint-specialist
 4. `commands` are written as single-quoted scalars under a
    `# TODO: confirm these` comment; `engine.path` is recorded
-5. Performance budgets are asked via `AskUserQuestion` (set defaults / leave
+5. Performance budgets are asked via `question` (set defaults / leave
    `[TO BE CONFIGURED]`), not pre-filled
 6. No `.uproject` is scaffolded; verdict COMPLETE
 
@@ -261,10 +261,10 @@ Fixture defaults.
 - Fresh project: no engine configured, no `project.yaml` engine block
 - The engine question comes back skipped: the user closes it, or a headless run
   returns every question as skipped
-- The sandbox carries the framework's `CLAUDE.md`. The rule this case checks is
+- The sandbox carries the framework's `AGENTS.md`. The rule this case checks is
   stated there ("A skipped or dismissed question is not an answer") and in
-  `.claude/docs/automation-modes.md`, not in `/setup-engine`'s own files; a rule
-  `CLAUDE.md` loads counts as the skill's own (`/skill-test` spec mode, Step 3),
+  `.opencode/docs/automation-modes.md`, not in `/setup-engine`'s own files; a rule
+  `AGENTS.md` loads counts as the skill's own (`/skill-test` spec mode, Step 3),
   so a sandbox without it is set up wrong, not a skill FAIL
 
 **Input:** `/setup-engine`
@@ -272,7 +272,7 @@ Fixture defaults.
 **Expected behavior:**
 1. The skill does not choose an engine, language or version itself
 2. It asks again in plain text, saying what is waiting on the answer, and waits
-3. Nothing is written to `CLAUDE.md`, `project.yaml`, `technical-preferences.md`
+3. Nothing is written to `AGENTS.md`, `project.yaml`, `technical-preferences.md`
    or `VERSION.md` before the user answers
 4. In a run where nobody can answer, it stops and reports what is waiting
 
@@ -286,7 +286,7 @@ Fixture defaults.
 ## Protocol Compliance
 
 - [ ] Presents draft configuration before asking to write
-- [ ] Asks "May I write" before writing `CLAUDE.md` and the `project.yaml` blocks; technical preferences are written only after the user approves the presented defaults
+- [ ] Asks "May I write" before writing `AGENTS.md` and the `project.yaml` blocks; technical preferences are written only after the user approves the presented defaults
 - [ ] Respects engine argument when provided (skips guided selection)
 - [ ] Dual-writes `project.yaml` and `technical-preferences.md`, then reads `project.yaml` back to confirm they agree
 - [ ] On re-run, edits existing `project.yaml` blocks in place without duplicating them

@@ -15,7 +15,7 @@ skill's Debt Register Format (next `TD-NNN`, ten columns, an `Added` date). A
 scan over zero source files is `NOT ASSESSED — no source files to scan`, an
 unresolved code root is `NOT ASSESSED — code root unresolved`, and both write
 nothing. `add` collects an
-entry through prompts and three `AskUserQuestion` choices, then asks "May I append
+entry through prompts and three `question` choices, then asks "May I append
 this entry to `docs/tech-debt-register.md`?". `prioritize` scores each register
 item as `impact ÷ effort` from its Impact and Effort columns, re-sorts
 and asks before writing it back; it recommends what goes in the next sprint, or at
@@ -31,7 +31,7 @@ subcommand), NOT ASSESSED.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: COMPLETE, BLOCKED, FAIL, NOT ASSESSED
 - [ ] Contains "May I write" language (writes `docs/tech-debt-register.md`)
@@ -50,7 +50,7 @@ invoked.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -137,14 +137,14 @@ Fixture defaults.
 ### Case 3b: Code Root Unresolved — NOT ASSESSED, nothing scanned on a guess
 
 **Fixture:**
-- `project.yaml` has no `engine.name`; `.claude/docs/technical-preferences.md` reads `[TO BE CONFIGURED]`
+- `project.yaml` has no `engine.name`; `.opencode/docs/technical-preferences.md` reads `[TO BE CONFIGURED]`
 - Both `src/` and `Source/` exist and hold source files, so the tree does not decide the root
 - `docs/tech-debt-register.md` exists with 3 entries
 
 **Input:** `/tech-debt scan`
 
 **Expected behavior:**
-1. The code root cannot be resolved per `.claude/docs/code-root-resolution.md`
+1. The code root cannot be resolved per `.opencode/docs/code-root-resolution.md`
 2. Skill reports `NOT ASSESSED — code root unresolved` and stops
 3. Neither directory is scanned on a guess; no "May I write" prompt, no register write, no COMPLETE verdict
 
@@ -165,18 +165,18 @@ Fixture defaults.
 
 **Expected behavior:**
 1. Skill asks in plain text for the description and affected files
-2. Skill uses `AskUserQuestion` for the category — six options, Architecture through Performance
-3. Skill uses `AskUserQuestion` for the fix effort — S, M, L, XL
-4. Skill uses `AskUserQuestion` for the impact if left unfixed — Low, Med, High, Critical
+2. Skill uses `question` for the category — six options, Architecture through Performance
+3. Skill uses `question` for the fix effort — S, M, L, XL
+4. Skill uses `question` for the impact if left unfixed — Low, Med, High, Critical
 5. Skill presents the complete new entry
 6. Skill asks "May I append this entry to `docs/tech-debt-register.md`?"
 7. User declines — nothing is written
 8. Verdict: **BLOCKED** — user declined write
 
 **Assertions:**
-- [ ] Category is collected with `AskUserQuestion` offering the six debt categories
-- [ ] Effort is collected with `AskUserQuestion` offering S / M / L / XL
-- [ ] Impact is collected with `AskUserQuestion` offering Low / Med / High / Critical, so `prioritize` can score the row
+- [ ] Category is collected with `question` offering the six debt categories
+- [ ] Effort is collected with `question` offering S / M / L / XL
+- [ ] Impact is collected with `question` offering Low / Med / High / Critical, so `prioritize` can score the row
 - [ ] The full entry is shown before the append prompt
 - [ ] On decline the register is unchanged and the verdict is BLOCKED
 

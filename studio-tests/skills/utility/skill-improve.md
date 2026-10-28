@@ -9,7 +9,7 @@ failed), then a category baseline with `/skill-test category [name]` when the
 skill has a `category:` in `studio-tests/catalog.yaml`. If both
 baselines are clean it stops with "No improvements needed." Otherwise it shows
 a diagnosis, proposes before/after fixes, asks "May I write this improved
-version to `.claude/skills/[name]/SKILL.md`?" (naming each `references/` file
+version to `.opencode/skills/[name]/SKILL.md`?" (naming each `references/` file
 the fix changes too — a phase's fix goes in its `references/` file), writes,
 re-runs the same tests,
 and shows a before → after comparison per dimension plus one combined line
@@ -18,7 +18,7 @@ and shows a before → after comparison per dimension plus one combined line
 Phase 6 compares the combined count (static FAILs + category FAILs + static
 WARNs + category WARNs). Lower than baseline → "Score improved. Changes kept."
 Same or worse → "Combined score did not improve." followed by "May I restore
-`.claude/skills/[name]/SKILL.md` to the content it had before this run?" (naming every file Phase 5 wrote) — the
+`.opencode/skills/[name]/SKILL.md` to the content it had before this run?" (naming every file Phase 5 wrote) — the
 restore runs only on a yes, and writes back the copy recorded in Phase 5 (never
 `git checkout`, which would also drop earlier uncommitted edits). No director gates apply.
 
@@ -28,7 +28,7 @@ restore runs only on a yes, and writes back the copy recorded in Phase 5 (never
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Phase 6 states both outcomes: "Score improved. Changes kept." and "Combined score did not improve."
 - [ ] Contains "May I write" collaborative protocol language before applying fixes
@@ -46,7 +46,7 @@ None. `/skill-improve` is a meta-utility skill. No director gates apply.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -56,7 +56,7 @@ Fixture defaults.
 ### Case 1: Happy Path — Check 4 FAIL and Check 5 WARN fixed, changes kept
 
 **Fixture:**
-- `.claude/skills/some-skill/SKILL.md` has `Write` in `allowed-tools` but no
+- `.opencode/skills/some-skill/SKILL.md` has writing instructions but no
   ask-before-write language (Check 4 FAIL) and no next-step section (Check 5 WARN)
 - catalog gives `some-skill` `category: utility`; its category baseline is
   1 FAIL (U1, because static checks fail)
@@ -70,7 +70,7 @@ Fixture defaults.
 2. Category baseline displayed: "Category baseline: 1 failures, 0 warnings (utility rubric)"
 3. Full diagnosis shown before any change is proposed
 4. Before/after blocks proposed for only the failing parts; skill asks
-   "May I write this improved version to `.claude/skills/some-skill/SKILL.md`?"
+   "May I write this improved version to `.opencode/skills/some-skill/SKILL.md`?"
 5. File written; both tests re-run; comparison shows
    `Static: Before 1 failures, 1 warnings → After 0 failures, 0 warnings`, the
    category line, and one combined line, `Combined: 3 → 0 (improved)`
@@ -88,7 +88,7 @@ Fixture defaults.
 ### Case 2: Fix Causes Regression — revert offered, runs only on yes
 
 **Fixture:**
-- `.claude/skills/some-skill/SKILL.md` has a static baseline of 0 FAILs and
+- `.opencode/skills/some-skill/SKILL.md` has a static baseline of 0 FAILs and
   1 WARN (Check 5, no handoff)
 - The applied fix adds a handoff but deletes the section holding the verdict
   keywords and the ask-before-write line: the static re-test shows 2 FAILs
@@ -107,7 +107,7 @@ Fixture defaults.
    re-run says so)
 3. Skill reports "Combined score did not improve." and shows what changed and
    why it may not have helped
-4. Skill asks "May I restore `.claude/skills/some-skill/SKILL.md` to the content it had before this run?"
+4. Skill asks "May I restore `.opencode/skills/some-skill/SKILL.md` to the content it had before this run?"
 5. On yes: writes the Phase 5 copy back with Write — it does not run `git checkout`
 
 **Assertions:**
@@ -126,7 +126,7 @@ Fixture defaults.
 - A sandbox copy of the live `gate-check` skill (its `SKILL.md` and all 12
   `references/` files), with three planted defects — the live skill is clean,
   so the case never depends on its current state:
-  - `SKILL.md` frontmatter has no `argument-hint:` line (static Check 1 FAIL)
+  - `SKILL.md` frontmatter has no `command description:` line (static Check 1 FAIL)
   - `references/4-assessment.md` has no "Name the omissions in the output"
     paragraph (G2 FAIL — a narrow panel no longer names who was left out)
   - `references/4-assessment.md` has its `solo` bullet changed to "run the
@@ -143,7 +143,7 @@ Fixture defaults.
 3. The Check 1 fix goes in `SKILL.md`; the G2 and G4 fixes go in
    `references/4-assessment.md`, not back into `SKILL.md`
 4. The write question names both files: "May I write this improved version to
-   `.claude/skills/gate-check/SKILL.md` and `.claude/skills/gate-check/references/4-assessment.md`?"
+   `.opencode/skills/gate-check/SKILL.md` and `.opencode/skills/gate-check/references/4-assessment.md`?"
 5. Both `/skill-test static gate-check` and `/skill-test category gate-check` re-run
 6. The comparison ends `Combined: 3 → 0 (improved)`: "Score improved. Changes kept."
 
@@ -161,11 +161,11 @@ Fixture defaults.
 ### Case 4: Skill Already Clean — No improvements needed
 
 **Fixture:**
-- `.claude/skills/some-skill/SKILL.md` is written for the case to pass all 7
-  static checks with no WARN: the five frontmatter fields, an `argument-hint`
+- `.opencode/skills/some-skill/SKILL.md` is written for the case to pass all 7
+  static checks with no WARN: the five frontmatter fields, an the command description
   that matches its documented modes, three `## Phase N` headings, a `PASS` /
-  `FAIL` verdict, `Write` in `allowed-tools` with "May I write" before it, a
-  closing next-step section naming `/skill-test`, and no `context: fork`
+  `FAIL` verdict, writing instructions in the skill body with "May I write" before it, a
+  closing next-step section naming `/skill-test`, and no the old fork context
 - catalog gives `some-skill` `category: utility`; U1 and U2 both pass
 - A purpose-built skill, not a live one such as `brainstorm`: whether a live
   skill is clean today can only be known by running `/skill-test`, so it is not
@@ -190,7 +190,7 @@ Fixture defaults.
 ### Case 5: Director Gate Check — No gate; skill-improve is a meta utility
 
 **Fixture:**
-- `.claude/skills/some-skill/SKILL.md` has at least 1 static failure; the user
+- `.opencode/skills/some-skill/SKILL.md` has at least 1 static failure; the user
   approves the write
 
 **Input:** `/skill-improve some-skill`
@@ -210,7 +210,7 @@ Fixture defaults.
 ### Case 6: Equal Score — "no change" does not keep the fix as an improvement
 
 **Fixture:**
-- `.claude/skills/some-skill/SKILL.md` has a static baseline of 0 FAILs and
+- `.opencode/skills/some-skill/SKILL.md` has a static baseline of 0 FAILs and
   1 WARN (Check 7, argument hint does not match the documented modes)
 - catalog gives `some-skill` no `category:`, so category checks are skipped
 - The applied fix corrects the hint but drops the closing next-step section:
@@ -223,7 +223,7 @@ Fixture defaults.
 1. "Category: not yet assigned — skipping category checks." is shown
 2. The comparison's combined line reads `Combined: 1 → 1 (no change)`
 3. An equal count takes the "did not improve" branch: "Combined score did not
-   improve.", then "May I restore `.claude/skills/some-skill/SKILL.md` to the
+   improve.", then "May I restore `.opencode/skills/some-skill/SKILL.md` to the
    content it had before this run?"
 4. On no, the file is left as written and nothing is restored
 
@@ -238,12 +238,12 @@ Fixture defaults.
 ### Case 7: Split Skill Regression — every file named, recorded and restored
 
 **Fixture:**
-- A purpose-built skill `.claude/skills/split-skill/` with `SKILL.md` and two
+- A purpose-built skill `.opencode/skills/split-skill/` with `SKILL.md` and two
   files in `references/`: `1-gather.md` and `2-report.md`. The `references/`
   files hold the phases' steps; `SKILL.md` holds the frontmatter and the
   phase list
 - Static baseline: 0 FAILs and 2 WARNs — Check 7 in `SKILL.md` (the
-  `argument-hint` does not match the documented modes) and Check 5 in
+  the command description does not match the documented modes) and Check 5 in
   `references/2-report.md` (the closing phase has no next-step section). The
   verdict keywords and the "May I write" line both live in `references/2-report.md`
 - catalog gives `split-skill` no `category:`, so category checks are skipped
@@ -269,8 +269,8 @@ Fixture defaults.
 5. The re-run measures the new score; the comparison ends
    `Combined: 2 → 3 (worse)`, and the skill reports "Combined score did not improve."
 6. The restore question names every file Phase 5 wrote: "May I restore
-   `.claude/skills/split-skill/SKILL.md` and
-   `.claude/skills/split-skill/references/2-report.md` to the content they had
+   `.opencode/skills/split-skill/SKILL.md` and
+   `.opencode/skills/split-skill/references/2-report.md` to the content they had
    before this run?"
 7. On yes: the recorded text of each file is written back with Write; no
    `git checkout`; `1-gather.md` is not touched

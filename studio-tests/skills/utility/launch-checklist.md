@@ -12,14 +12,14 @@ Certification section is emitted **only** for the `cert_tier` value
 licence to emit every track; if it cannot be determined the section is marked
 `NOT ASSESSED — cert tier unknown`.
 
-Phase 2 reads `CLAUDE.md`, the latest milestone, any existing checklist in
+Phase 2 reads `AGENTS.md`, the latest milestone, any existing checklist in
 `production/releases/` and the content calendar. Phase 3 scans the code root for
 TODO/FIXME/HACK, debug output, placeholder assets and hardcoded dev values, and
 reports every scan with its denominator (`scanned [N] files, [M] hits`) or
 `NOT ASSESSED — [reason]`; an unassessable item is written `- [?]` with a legend,
 never a bare box or tick. The bug rows follow `workflow`: S1 and S2 (or a
 documented exception), and at `full` S1–S3 with no exceptions. Phase 4b asks one
-`AskUserQuestion` per section about the items no scan or file settled, each
+`question` per section about the items no scan or file settled, each
 answered yes / no / not yet / N/A: yes ticks it, no or not yet is a failed item
 (Blocking, or Conditional with a workaround or accepted risk), N/A leaves it out;
 it is skipped, and says so, in `dry-run` and in `autonomous` mode. The checklist
@@ -41,12 +41,12 @@ if `project.stage` is not `Release` (`Polish`, an earlier stage, or unset), then
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Frontmatter sets `disable-model-invocation: true`: it runs only when the user types it, set in frontmatter rather than asked for in prose
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: READY, CONDITIONAL, NOT ASSESSED, NOT READY (Overall Status, first match NOT READY → NOT ASSESSED → CONDITIONAL → READY), and NOT ASSESSED for unassessable scans and cert tier
 - [ ] Contains "May I write" language before writing the checklist, and creates no file or directory before the answer
-- [ ] Has a Phase 4b that asks one `AskUserQuestion` per section, answers yes / no / not yet / N/A, with no / not yet a failed item and N/A excluded
+- [ ] Has a Phase 4b that asks one `question` per section, answers yes / no / not yet / N/A, with no / not yet a failed item and N/A excluded
 - [ ] Has a next-step handoff (`/gate-check release` only when `project.stage` is not `Release`, and `/team-release`)
 
 ---
@@ -64,7 +64,7 @@ Producer, Release Manager) is checklist text for humans, coordinated later via
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -92,7 +92,7 @@ Fixture defaults.
    depot build, achievements, common content rules) plus the every-tier accessibility row
 4. The soak-test item asks for the longest soak `/soak-test` runs (or a longer
    one run by hand), not a fixed duration `/soak-test` cannot produce
-5. Phase 4b asks one `AskUserQuestion` per section, listing only the items no
+5. Phase 4b asks one `question` per section, listing only the items no
    scan or file settled (not the Phase 3 counts), each answered yes / no /
    not yet / N/A
 6. The confirmed items are ticked `(confirmed by the user)`; the Servers items are

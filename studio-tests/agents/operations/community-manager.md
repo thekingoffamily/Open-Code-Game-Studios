@@ -10,8 +10,8 @@
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references player communication, patch notes, community management)
-- [ ] `tools:` reads `Read, Glob, Grep, Write, Edit` and `disallowedTools:` names `Bash` — drafts and documents only, no shell or build tools
-- [ ] Model tier is `sonnet` — frontmatter `model:` reads exactly `sonnet` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] `permission:` reads `Read, Glob, Grep, Write, Edit` and `permission.bash:` names `Bash` — drafts and documents only, no shell or build tools
+- [ ] Model tier is `sonnet` — frontmatter `model:` reads exactly `sonnet` (tiers: `.opencode/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over technical content, QA strategy, or bug fixing
 - [ ] Tone and Voice states that a brand-voice or style guide the project supplies overrides its defaults (tone, person, glossary terms)
 - [ ] For a release, it works from the patch notes release-manager produces with `/patch-notes` rather than regenerating them

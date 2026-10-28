@@ -9,11 +9,11 @@
 
 ## Static Assertions (Structural)
 
-Verified by reading the agent's `.claude/agents/game-designer.md` frontmatter:
+Verified by reading the agent's `.opencode/agents/game-designer.md` frontmatter:
 
 - [ ] `description:` field is present and domain-specific (references core loop, progression, combat rules, economy, player-facing design — not generic)
-- [ ] `tools:` reads Read, Glob, Grep, Write, Edit, WebSearch and `disallowedTools:` lists Bash
-- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] `permission:` reads Read, Glob, Grep, Write, Edit, WebSearch and `permission.bash:` lists Bash
+- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.opencode/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over code implementation, visual art style, or standalone narrative lore decisions
 
 ---

@@ -4,7 +4,7 @@
 
 `/prototype [concept] [--path html|engine|paper] [--review full|lean|solo]
 [--spike]` runs a throwaway concept prototype before GDDs are written. It first
-confirms intent with `AskUserQuestion` (Prototype this concept / Skip — concept
+confirms intent with `question` (Prototype this concept / Skip — concept
 already proven / Mid-production spike), forms a falsifiable hypothesis ("If the
 player [does X], they will feel [Y] — we will know this is true if [Z]") and asks
 for the riskiest assumption. It picks an HTML, Engine or Paper path (genre table,
@@ -17,7 +17,7 @@ JavaScript, `<!-- -->` in HTML and Markdown), and standards are intentionally
 relaxed.
 
 After a one-question-at-a-time debrief, it fills
-`.claude/docs/templates/prototype-report.md`, asks to write
+`.opencode/docs/templates/prototype-report.md`, asks to write
 `prototypes/[concept-name]-concept/REPORT.md` and add its row to
 `prototypes/index.md` (one ask naming both). Verdicts are **PROCEED / PIVOT / KILL**. PIVOT writes a
 `PIVOT-NOTE.md`; KILL runs a five-item soundness check and appends to
@@ -37,7 +37,7 @@ no CD gate and no PROCEED/PIVOT/KILL.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: PROCEED, PIVOT, KILL, NOT ASSESSED (a prototype nobody has played)
 - [ ] Contains "May I create" / "May I write" language before creating the prototype directory and the report
@@ -68,7 +68,7 @@ Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -89,7 +89,7 @@ Fixture defaults.
 **Input:** `/prototype grapple-hook traversal`
 
 **Expected behavior:**
-1. `AskUserQuestion` confirms intent; user picks "Prototype this concept"
+1. `question` confirms intent; user picks "Prototype this concept"
 2. Skill states a falsifiable hypothesis in the If / feel / know-if form and asks
    for the riskiest assumption
 3. Path widget pre-states an Engine recommendation (traversal feel is the
@@ -101,7 +101,7 @@ Fixture defaults.
    file it writes starts with `# PROTOTYPE - NOT FOR PRODUCTION` (GDScript
    comments use `#`; a `//` header would not parse)
 6. Debrief questions are asked one at a time; report drafted from
-   `.claude/docs/templates/prototype-report.md`; "May I write this report to
+   `.opencode/docs/templates/prototype-report.md`; "May I write this report to
    `prototypes/grapple-hook-concept/REPORT.md` and add its row to
    `prototypes/index.md`?"; a row is appended to `prototypes/index.md`
 7. Note "CD-PLAYTEST skipped — Solo mode."; PROCEED routes to `/design-review`,
@@ -297,7 +297,7 @@ Fixture defaults.
 
 ## Protocol Compliance
 
-- [ ] Confirms intent with `AskUserQuestion` before building (unless `--spike`)
+- [ ] Confirms intent with `question` before building (unless `--spike`)
 - [ ] Forms a falsifiable hypothesis and stops if the concept is too vague to form one
 - [ ] Presents the plan and gets confirmation before building
 - [ ] Asks before creating `prototypes/[concept-name]-concept/` and before writing REPORT.md (with its `prototypes/index.md` row), PIVOT-NOTE.md or GRAVEYARD.md

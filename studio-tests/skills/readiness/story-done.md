@@ -6,16 +6,16 @@
 end of implementing a story, it reads the story file, re-reads the current
 requirement text from `docs/architecture/tr-registry.yaml` (never the story's
 quoted copy) and the governing ADR's `## Decision` / `## Consequences`, verifies
-each acceptance criterion (automatically, by batched `AskUserQuestion`, or as
+each acceptance criterion (automatically, by batched `question`, or as
 `DEFERRED — requires playtest session`), builds a criterion-to-test
 traceability table, checks test evidence, and checks GDD/ADR/manifest/scope
 deviations (categorised BLOCKING / ADVISORY / OUT OF SCOPE). Review mode then
 decides the QA coverage gate (QL-TEST-COVERAGE) and the code review step
 (LP-CODE-REVIEW in `full`, a `/code-review` question in `lean`, a noted skip in
 `solo`). It produces a COMPLETE / COMPLETE WITH NOTES / NOT ASSESSED / BLOCKED
-verdict and, only after an `AskUserQuestion` choice, updates the story file,
+verdict and, only after an `question` choice, updates the story file,
 optionally appends to `docs/tech-debt-register.md`, and surfaces the next story —
-with no sprint plan, from `bash .claude/scripts/story-status.sh`, the list `/help`
+with no sprint plan, from `bash .opencode/scripts/story-status.sh`, the list `/help`
 and `/sprint-status` read, run after the story file is written. It says what a
 screenshot shows only after opening it, and asks about behaviour criteria rather
 than reading them off the code.
@@ -26,10 +26,10 @@ than reading them off the code.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥5 phase headings (complex multi-phase skill)
 - [ ] Contains verdict keywords: COMPLETE, COMPLETE WITH NOTES, NOT ASSESSED, BLOCKED
-- [ ] `allowed-tools` includes Write/Edit, so ask-before-write language is present ("Use `AskUserQuestion` before writing anything" — covering the story file and the tech-debt register)
+- [ ] the skill writes files, so ask-before-write language is present ("Use `question` before writing anything" — covering the story file and the tech-debt register)
 - [ ] Has a next-step handoff (surfaces next story from sprint)
 
 ---
@@ -38,7 +38,7 @@ Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -85,7 +85,7 @@ Fixture defaults.
 7. Phase 4b notes "QL-TEST-COVERAGE skipped — Lean mode."
 8. Phase 5 (lean) asks "Code review is skipped in lean mode. Did you run `/code-review` on the implemented files?"
 9. Completion report with verdict COMPLETE
-10. `AskUserQuestion` "Verification complete. How do you want to proceed?"; on "Close the story", the file is updated
+10. `question` "Verification complete. How do you want to proceed?"; on "Close the story", the file is updated
 11. Skill surfaces the next ready stories from the sprint
 
 **Assertions:**
@@ -97,7 +97,7 @@ Fixture defaults.
 - [ ] The traceability table maps each of AC-1..AC-3 to its test function, with no UNTESTED row
 - [ ] The `Run result:` line is read from the checkpoint (whose **Current task** names this story) and noted with its retained path
 - [ ] Verdict is COMPLETE — every criterion maps to a test, the run was observed and retained, and no deviations exist
-- [ ] No file is edited before the Phase 7 `AskUserQuestion`; on "Close the story" the story gets `Status: Complete`, a `Last Updated:` date and a `## Completion Notes` section
+- [ ] No file is edited before the Phase 7 `question`; on "Close the story" the story gets `Status: Complete`, a `Last Updated:` date and a `## Completion Notes` section
 - [ ] After completion, skill surfaces the next READY / NOT STARTED Must Have or Should Have story from `production/sprints/` and suggests `/story-readiness [path]`
 
 ---
@@ -115,7 +115,7 @@ Fixture defaults.
 
 **Expected behavior:**
 1. Criterion (a) is a subjective/gameplay criterion → skill asks via a batched
-   `AskUserQuestion` ("Does [criterion]?" — `Yes — passes` / `No — fails` / `Not tested yet`)
+   `question` ("Does [criterion]?" — `Yes — passes` / `No — fails` / `Not tested yet`)
 2. The user answers `Yes — passes`. The retained frame is the observation the
    evidence rule requires; the answer covers the motion a still cannot show, and
    counts as the manual test
@@ -131,7 +131,7 @@ Fixture defaults.
 - [ ] The deferred criterion is named in the Completion Notes `Criteria:` line, with the untested-criteria recommendation
 - [ ] Variant — if the user answers `No — fails` for (a), the criterion is `FAILS`, the verdict is BLOCKED, and the skill does not proceed to Phase 7 on its own
 - [ ] Variant — no image for this story is retained under `production/qa/evidence/` and the checkpoint carries no `Run result:` line: the user's `Yes — passes` for (a) is an assertion, not evidence, so the missing observation is flagged at the Logic gate level (BLOCKING by default) and the verdict is BLOCKED — never COMPLETE WITH NOTES on the confirmation alone
-- [ ] Skill still asks via `AskUserQuestion` before updating the story file
+- [ ] Skill still asks via `question` before updating the story file
 
 ---
 
@@ -155,7 +155,7 @@ Fixture defaults.
 - [ ] Skill detects the mismatch between the current requirement text and the implemented value
 - [ ] The deviation is reported neutrally as BLOCKING with the GDD/TR reference — the skill does not edit code or the GDD to reconcile it
 - [ ] Verdict is BLOCKED, and Phase 7 is not entered unless the user explicitly asks to close anyway
-- [ ] Closing a BLOCKED story goes through the Phase 7 `AskUserQuestion` regardless of automation mode
+- [ ] Closing a BLOCKED story goes through the Phase 7 `question` regardless of automation mode
 - [ ] If closed via "Accept deviations as-is and close anyway", the deviation is recorded in the Completion Notes `Deviations:` line
 
 ---
@@ -178,7 +178,7 @@ Fixture defaults.
 **Assertions:**
 - [ ] Skill reads `production/session-state/active.md` first when no argument is given
 - [ ] The report's `**Story**:` line names the auto-detected story file
-- [ ] With several in-progress stories in the sprint, skill asks which one via `AskUserQuestion` instead of picking one
+- [ ] With several in-progress stories in the sprint, skill asks which one via `question` instead of picking one
 - [ ] If no story is found anywhere, skill asks the user to provide a path
 
 ---
@@ -200,7 +200,7 @@ Fixture defaults.
 2. Skill spawns `lead-programmer` with gate LP-CODE-REVIEW, passing the
    implementation file paths, story path, relevant GDD section and governing ADR
 3. The verdict (APPROVE / CONCERNS / REJECT) is presented to the user
-4. CONCERNS → `AskUserQuestion`: `Revise flagged issues` / `Accept and proceed` / `Discuss further`
+4. CONCERNS → `question`: `Revise flagged issues` / `Accept and proceed` / `Discuss further`
 5. REJECT → no Phase 6 verdict until the issues are resolved
 6. NOT ASSESSED (a gate input was missing) → the skill names the missing input and
    never reads it as APPROVE: the input is supplied and the gate re-run, or the
@@ -210,9 +210,9 @@ Fixture defaults.
 - [ ] Skill uses the resolved review mode before deciding whether to spawn LP-CODE-REVIEW
 - [ ] LP-CODE-REVIEW is spawned in full mode after the implementation checks, with the four context items
 - [ ] A REJECT verdict prevents the story from reaching a COMPLETE verdict until resolved
-- [ ] A CONCERNS verdict produces the three-option `AskUserQuestion`
+- [ ] A CONCERNS verdict produces the three-option `question`
 - [ ] A NOT ASSESSED answer from either gate is never treated as APPROVE / ADEQUATE: unless the missing input is supplied and the gate re-run, the verdict is NOT ASSESSED, not COMPLETE
-- [ ] Skill still asks via the Phase 7 `AskUserQuestion` before updating story status, even after APPROVE
+- [ ] Skill still asks via the Phase 7 `question` before updating story status, even after APPROVE
 
 **Case 5b — lean mode:** `--review lean`
 
@@ -226,7 +226,7 @@ Fixture defaults.
 **Assertions (5c):**
 - [ ] Neither LP-CODE-REVIEW nor QL-TEST-COVERAGE spawns, and no code-review question is asked
 - [ ] Output notes "LP-CODE-REVIEW skipped — Solo mode." and "QL-TEST-COVERAGE skipped — Solo mode."
-- [ ] Skill still requires the Phase 7 `AskUserQuestion` before marking the story Complete
+- [ ] Skill still requires the Phase 7 `question` before marking the story Complete
 
 ---
 
@@ -254,7 +254,7 @@ Fixture defaults.
 3. Phase 4 runs the manifest, hardcoded-value and scope checks only (no GDD/ADR
    traceability at `minimal`); Phase 5 notes "LP-CODE-REVIEW skipped — Solo mode."
 4. Verdict COMPLETE; after the Phase 7 approval the story is marked Complete
-5. Phase 8 takes the no-sprint branch: it runs `bash .claude/scripts/story-status.sh`
+5. Phase 8 takes the no-sprint branch: it runs `bash .opencode/scripts/story-status.sh`
    after the story file is written; `story-003` is on its first `TODO` line →
    "Run `/dev-story [path]`"
 
@@ -262,7 +262,7 @@ Fixture defaults.
 - [ ] The UI screenshot check runs at `qa.level: minimal` and is satisfied by the retained image alone — no evidence doc or sign-off is required for a UI story
 - [ ] Verdict is COMPLETE, not BLOCKED for a missing sign-off
 - [ ] Phase 8 names `story-003` and recommends `/dev-story` directly — no `/story-readiness` line at `minimal`, and no Sprint Close-Out Sequence
-- [ ] The next story comes from `bash .claude/scripts/story-status.sh`, run after this story's `Status: Complete` is written — not from a grep of one epic folder
+- [ ] The next story comes from `bash .opencode/scripts/story-status.sh`, run after this story's `Status: Complete` is written — not from a grep of one epic folder
 - [ ] Variant — `production/epics/combat/story-001-arena.md` reads `**Status:** In Review`: it is Next Up (the script lists `IN_REVIEW` first, across every epic folder), and the Next Up line recommends `/story-done [path]` to close it, not `/dev-story`
 - [ ] Variant — no image under `production/qa/evidence/` and no `Run result:` line: the UI gate is still BLOCKING at `qa.level: minimal`, so the verdict is BLOCKED
 - [ ] Variant — `story-003` is `Blocked`, naming its blocker, and no other story is unfinished: Phase 8 prints no Next Up, names `story-003` with its blocker, suggests clearing it, and never says the build order is done
@@ -318,7 +318,7 @@ Fixture defaults.
 ## Protocol Compliance
 
 - [ ] Reads a `references/*.md` file only on the branch that needs it, before that branch's step begins
-- [ ] Asks via `AskUserQuestion` before updating the story file
+- [ ] Asks via `question` before updating the story file
 - [ ] Appends to `docs/tech-debt-register.md` only when the user picks "Close and log advisory deviations as tech debt", as rows of `/tech-debt`'s register table with an `Added` date — never as free bullets
 - [ ] Presents the complete report (criteria, traceability, test evidence, deviations, scope) before asking
 - [ ] Ends by surfacing the next ready story (sprint plan) or the next story in the epic folder (no sprint plan)

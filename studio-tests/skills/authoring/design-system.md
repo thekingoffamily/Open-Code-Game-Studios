@@ -34,7 +34,7 @@ user to a fresh session.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: `APPROVED`, `CONCERNS`, `BLOCKED`
 - [ ] Contains "May I write" / "May I create" collaborative protocol language (skeleton and per-section approval)
@@ -76,7 +76,7 @@ Review manually before production."
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -94,7 +94,7 @@ Fixture defaults.
 **Input:** `/design-system combat`
 
 **Expected behavior:**
-1. Phase 2 reads the concept, systems index, entity registry (if present) and dependency GDD sections before asking anything, then presents the "Designing: Combat" context summary and the Technical Feasibility Brief with its `AskUserQuestion`
+1. Phase 2 reads the concept, systems index, entity registry (if present) and dependency GDD sections before asking anything, then presents the "Designing: Combat" context summary and the Technical Feasibility Brief with its `question`
 2. "Ready to start designing combat?" is asked
 3. "May I create the skeleton file at `design/gdd/combat.md`?" — on yes, the skeleton is written with all 8 required sections plus the template's other sections, each holding `[To be designed]`; `production/session-state/active.md` is updated
 4. Sections A–H are walked in order; each draft is followed in the same response by "Approve the [Section Name] section?" with `[A] Approve — write it to file` / `[B] Make changes — describe what to fix` / `[C] Start over`
@@ -161,7 +161,7 @@ Fixture defaults.
 
 **Expected behavior:**
 1. `creative-director` is spawned with gate CD-GDD-ALIGN and passed the GDD path, the game pillars, the MDA aesthetics target and the GDD's Player Fantasy section
-2. (a) The CONCERNS are surfaced via `AskUserQuestion` with the standard options: `Revise flagged items` / `Accept and proceed` / `Discuss further`
+2. (a) The CONCERNS are surfaced via `question` with the standard options: `Revise flagged items` / `Accept and proceed` / `Discuss further`
 3. (a) If "Revise flagged items": Detailed Design runs its section cycle again — its specialists consulted first — and is approved through "Approve the Detailed Design section?" before it is written; the Status header records `REVISED [date]`
 4. (a) If "Accept and proceed": the Status header records `CONCERNS (accepted) [date]`
 5. (b) The blockers are shown; the flagged section is re-drafted and re-approved the same way before anything else is written, and the Status header records `REVISED [date]`, never `APPROVED`
@@ -218,7 +218,7 @@ Fixture defaults.
 **Input:** (a) `/design-system` (b) `/design-system` (c) `/design-system stamina`
 
 **Expected behavior:**
-1. (a) `AskUserQuestion`: "The next system in your design order is **stamina** (MVP | Core). Start designing it?" with `[A] Yes — design stamina` / `[B] Pick a different system` / `[C] Stop here`
+1. (a) `question`: "The next system in your design order is **stamina** (MVP | Core). Start designing it?" with `[A] Yes — design stamina` / `[B] Pick a different system` / `[C] Stop here`
 2. (b) The skill stops with the usage message ("Usage: `/design-system <system-name>` …"), the retrofit example, and "No systems index found. Run `/map-systems` first to map your systems and get the design order."
 3. (c) The skill stops with: "Verdict: **BLOCKED** — skeleton creation declined. …" and does not proceed to Section A
 4. In none of the three scenarios is a GDD file written before an approval
@@ -321,7 +321,7 @@ Fixture defaults.
 - [ ] CD-GDD-ALIGN runs once in full mode after all sections; lean and solo print a skip note naming the gate and mode
 - [ ] `/design-review` is directed to a fresh session and never run or offered inline
 - [ ] Reads each phase's `references/N-*.md` file before doing that phase, and again after a compaction or resume during it
-- [ ] Ends with a next-step `AskUserQuestion` and Recommended Next Steps (`/consistency-check`, `/map-systems next`, `/design-review` in a fresh session)
+- [ ] Ends with a next-step `question` and Recommended Next Steps (`/consistency-check`, `/map-systems next`, `/design-review` in a fresh session)
 
 ---
 

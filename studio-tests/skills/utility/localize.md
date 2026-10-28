@@ -27,7 +27,7 @@ as passed. No director gates apply.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: COMPLETE, FAIL, NOT ASSESSED, PASS WITH CONDITIONS
 - [ ] Contains "May I write" collaborative protocol language before writing the string table or a report
@@ -49,7 +49,7 @@ it spawns is `localization-lead` (an operations-tier agent), and only in the
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -181,7 +181,7 @@ Fixture defaults.
 ### Case 6: Scan With an Unresolved Code Root — NOT ASSESSED, never "no hardcoded strings"
 
 **Fixture:**
-- `project.yaml` has no `engine.name`; `.claude/docs/technical-preferences.md`
+- `project.yaml` has no `engine.name`; `.opencode/docs/technical-preferences.md`
   reads `[TO BE CONFIGURED]`
 - Both `src/` and `Assets/` exist and hold UI code with hardcoded strings
   (ambiguous tree)
@@ -250,7 +250,7 @@ Fixture defaults.
   is not separately tested; Case 6 covers the unresolved root.
 - `extract` while `freeze-status.md` shows Status: ACTIVE (new keys appended to
   `## Post-Freeze Changes` with a freeze-violation warning) is not tested.
-- `freeze` (pre-freeze checklist and `AskUserQuestion` [A]/[B]), `brief`,
+- `freeze` (pre-freeze checklist and `question` [A]/[B]), `brief`,
   `vo-pipeline` and `rtl-check` are not exercised by a dedicated case; `qa` is
   covered only for its NOT ASSESSED branch (Case 7).
 - The `qa` gate note — a FAIL blocks release for that locale only — needs a live

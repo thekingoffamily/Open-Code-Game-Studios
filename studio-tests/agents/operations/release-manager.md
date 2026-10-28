@@ -10,9 +10,9 @@
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references release pipeline, certification, store submission)
-- [ ] `tools:` reads `Read, Glob, Grep, Write, Edit, Bash` — Bash for release tagging ("Version tags must be applied to the git repository at every release point")
+- [ ] `permission:` reads `Read, Glob, Grep, Write, Edit, Bash` — Bash for release tagging ("Version tags must be applied to the git repository at every release point")
 - [ ] `skills:` preloads `release-checklist`, `changelog` and `patch-notes`
-- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.opencode/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over QA strategy, game design, or build infrastructure
 - [ ] Its next-step offer runs `/patch-notes [version]` itself and hands the result to community-manager for the announcement — never a brief for community-manager to write the patch notes
 - [ ] The pipeline's Test step takes the release gate's tier: QA sign-off at `workflow: full` (recommended at `standard`), no open S1 at any tier, no open S2 or S3 either at `full`

@@ -31,7 +31,7 @@
 #
 # STATUS VALUES: active | deprecated | "superseded-by: TR-[system]-NNN"
 #
-# LAYOUT: the one shape .claude/scripts/registry.sh reads. requirements: holds
+# LAYOUT: the one shape .opencode/scripts/registry.sh reads. requirements: holds
 #   a block list, or [] while it is empty. Each entry starts "- id: TR-..." with
 #   the dash at column 0, as in the examples (or 2, the same for every entry);
 #   its fields sit two columns past the dash. Quote a value that holds ": ". A

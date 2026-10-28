@@ -4,7 +4,7 @@
 
 `/estimate [task-description]` estimates the effort for one task. It reads the
 task description from the argument (asking for clarification first if it is too
-vague to estimate), the project context from `CLAUDE.md`, and any related GDD in
+vague to estimate), the project context from `AGENTS.md`, and any related GDD in
 `design/gdd/` (Phase 1). It scans the affected code for complexity, integration
 points and test coverage, and reads `production/sprints/` for similar completed
 tasks and historical velocity (Phase 2). It analyzes code complexity, scope and
@@ -22,7 +22,7 @@ half days. The skill is read-only and invokes no director gates.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains the Optimistic / Expected / Pessimistic scenarios, the High / Medium / Low confidence levels, and the `COMPLETE` verdict
 - [ ] Does NOT require "May I write" language (read-only; states that no files are written)
@@ -40,7 +40,7 @@ None. Estimation is an advisory informational skill; no gates are invoked.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---

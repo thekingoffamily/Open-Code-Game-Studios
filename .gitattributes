@@ -1,14 +1,14 @@
 # Shell scripts must use LF line endings. core.autocrlf=true would otherwise
 # convert them to CRLF on checkout, which breaks bash on Windows Git Bash
 # (stray \r corrupts commands and string comparisons). This applies to the
-# .claude/hooks/*.sh hooks and .claude/scripts/*.sh.
+# .opencode/hooks/*.sh hooks and .opencode/scripts/*.sh.
 *.sh text eol=lf
 
 # awk programs the helpers read with `awk -f` (yaml-get.awk). Git Bash gawk
 # tolerates CRLF; mawk and BWK awk may not, so they are checked out LF too.
 *.awk text eol=lf
 
-# .worktreeinclude is a pattern list Claude Code reads when it creates a
+# .worktreeinclude is a pattern list opencode reads when it creates a
 # worktree. A CRLF checkout would end every pattern in \r, and a parser that
 # does not strip it matches nothing, so the local config is silently not copied.
 .worktreeinclude text eol=lf
@@ -18,7 +18,7 @@
 # every line differ, silently breaking any such comparison.
 *.tsv text eol=lf
 
-# Markdown under .claude/ is authored LF. Two concrete reasons:
+# Markdown under .opencode/ is authored LF. Two concrete reasons:
 #   - tooling that flattens SKILL.md files and substring-matches sentences
 #     breaks on a stray \r mid-sentence: every multi-line match fails, and
 #     the tooling then reports rules as lost that are present.
@@ -26,4 +26,4 @@
 #     which buries real changes.
 # .gitattributes governs the INDEX. It does not retro-fix a working tree that
 # predates the rule -- run `git add --renormalize .` for that.
-.claude/**/*.md text eol=lf
+.opencode/**/*.md text eol=lf

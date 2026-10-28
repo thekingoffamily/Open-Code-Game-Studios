@@ -7,7 +7,7 @@ design standard (Overview, Player Fantasy, Detailed Rules, Formulas, Edge
 Cases, Dependencies, Tuning Knobs, Acceptance Criteria). Which sections are
 REQUIRED depends on the workflow tier resolved for that system: all 8 at
 `full`; 5 at `standard` (plus Formulas when the system defines numeric rules).
-It gathers section presence with `.claude/scripts/gdd-structure-check.sh`,
+It gathers section presence with `.opencode/scripts/gdd-structure-check.sh`,
 validates the declared dependency graph, checks internal consistency,
 implementability and cross-system fit, and produces a verdict of APPROVED,
 NEEDS REVISION, MAJOR REVISION NEEDED, or NOT ASSESSED.
@@ -17,7 +17,7 @@ review plus a `creative-director` senior synthesis (Phase 3b); `lean` runs all
 phases without agents; `solo` runs Phases 1–4 only with no next-step prompt.
 Phase 4 writes nothing. In Phase 5 it can update `design/gdd/systems-index.md`
 and append to `design/gdd/reviews/[doc-name]-review-log.md`, each only after the
-user approves via `AskUserQuestion`.
+user approves via `question`.
 
 ---
 
@@ -25,10 +25,10 @@ user approves via `AskUserQuestion`.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings or numbered steps
 - [ ] Contains verdict keywords: APPROVED, NEEDS REVISION, MAJOR REVISION NEEDED, NOT ASSESSED
-- [ ] `allowed-tools` includes Write/Edit, so "May I" write-approval language is present (systems-index update, review-log append)
+- [ ] the skill writes files, so "May I" write-approval language is present (systems-index update, review-log append)
 - [ ] Output format is documented (review template shown in skill body)
 
 ---
@@ -37,7 +37,7 @@ Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -59,13 +59,13 @@ Fixture defaults.
 
 **Expected behavior:**
 1. Freshness check (`review-receipts.sh check …`) finds no receipt → full review
-2. Skill reads the target document in full and reads CLAUDE.md
-3. Skill runs `bash .claude/scripts/gdd-structure-check.sh design/gdd/light-manipulation.md`
+2. Skill reads the target document in full and reads AGENTS.md
+3. Skill runs `bash .opencode/scripts/gdd-structure-check.sh design/gdd/light-manipulation.md`
 4. Skill Globs `design/gdd/` for each declared dependency
 5. Skill checks internal consistency, implementability and cross-system fit
 6. No agents are spawned (lean)
 7. Skill outputs the Phase 4 review, ending with the verdict
-8. On APPROVED, one multi-select `AskUserQuestion` offers the two tracking
+8. On APPROVED, one multi-select `question` offers the two tracking
    updates; only the selected ones are written; then a final closing widget
 
 **Assertions:**
@@ -228,9 +228,9 @@ runs and the last assertion below would test nothing.)
 ## Protocol Compliance
 
 - [ ] Writes nothing during the review itself (Phase 4)
-- [ ] Every write (systems-index status, review-log append) happens only after an `AskUserQuestion` approval
+- [ ] Every write (systems-index status, review-log append) happens only after an `question` approval
 - [ ] Presents complete findings before the verdict line
-- [ ] Outside `solo`, closes with an `AskUserQuestion` next-step widget rather than plain text (collaborative/guided modes)
+- [ ] Outside `solo`, closes with an `question` next-step widget rather than plain text (collaborative/guided modes)
 
 ---
 

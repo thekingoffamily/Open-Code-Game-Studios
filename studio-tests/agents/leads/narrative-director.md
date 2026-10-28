@@ -3,17 +3,17 @@
 ## Agent Summary
 **Domain owned:** Story architecture, character design direction, world-building oversight, ND-CONSISTENCY gate, dialogue strategy.
 **Does NOT own:** Visual art style (art-director), technical systems or code (lead-programmer), production scheduling (producer), game mechanics rules (game-designer).
-**Gate IDs handled:** ND-CONSISTENCY (verdicts APPROVE / CONCERNS / REJECT, defined in `.claude/docs/director-gates/nd-consistency.md`).
+**Gate IDs handled:** ND-CONSISTENCY (verdicts APPROVE / CONCERNS / REJECT, defined in `.opencode/docs/director-gates/nd-consistency.md`).
 
 ---
 
 ## Static Assertions (Structural)
 
-Verified by reading the agent's `.claude/agents/narrative-director.md` frontmatter:
+Verified by reading the agent's `.opencode/agents/narrative-director.md` frontmatter:
 
 - [ ] `description:` field is present and domain-specific (references story, character, world-building, consistency — not generic)
-- [ ] `tools:` reads Read, Glob, Grep, Write, Edit, WebSearch and `disallowedTools:` lists Bash
-- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] `permission:` reads Read, Glob, Grep, Write, Edit, WebSearch and `permission.bash:` lists Bash
+- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.opencode/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over visual style, technical systems, or production scheduling
 
 ---
@@ -21,7 +21,7 @@ Verified by reading the agent's `.claude/agents/narrative-director.md` frontmatt
 ## Test Cases
 
 ### Case 1: In-domain request — appropriate output format
-**Scenario:** A new lore document for "The Sunken Archive" location is submitted. The document establishes that the Archive was flooded 200 years ago during the Great Collapse, consistent with the established timeline in the world-bible. All named characters referenced are consistent with their established profiles, and the tone matches the narrative bible's tone guide. The gate context passes every input `.claude/docs/director-gates/nd-consistency.md` names: the document path, the tone guide, the world-bible's timeline rules, and the profiles of the characters it references. Request is tagged ND-CONSISTENCY.
+**Scenario:** A new lore document for "The Sunken Archive" location is submitted. The document establishes that the Archive was flooded 200 years ago during the Great Collapse, consistent with the established timeline in the world-bible. All named characters referenced are consistent with their established profiles, and the tone matches the narrative bible's tone guide. The gate context passes every input `.opencode/docs/director-gates/nd-consistency.md` names: the document path, the tone guide, the world-bible's timeline rules, and the profiles of the characters it references. Request is tagged ND-CONSISTENCY.
 **Expected:** Returns `APPROVE` with rationale confirming the timeline alignment, character consistency, and tone.
 **Assertions:**
 - [ ] Verdict is exactly one of APPROVE / CONCERNS / REJECT (the ND-CONSISTENCY gate's vocabulary) — here APPROVE

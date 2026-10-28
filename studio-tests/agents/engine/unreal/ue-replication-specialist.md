@@ -10,8 +10,8 @@
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references replication, RPCs, client prediction, bandwidth)
-- [ ] `tools:` reads Read, Glob, Grep, Write, Edit, Bash — no `Agent` tool
-- [ ] Model tier is `sonnet` — frontmatter `model:` reads exactly `sonnet` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] `permission:` reads Read, Glob, Grep, Write, Edit, Bash — no `Agent` tool
+- [ ] Model tier is `sonnet` — frontmatter `model:` reads exactly `sonnet` (tiers: `.opencode/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over server infrastructure, game server architecture, or gameplay logic correctness
 
 ---

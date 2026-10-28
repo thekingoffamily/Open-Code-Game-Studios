@@ -334,9 +334,9 @@ Skill: "Writing design/concept.md..."
 
 ---
 
-## 🎛️ Structured Decision UI (AskUserQuestion)
+## 🎛️ Structured Decision UI (question)
 
-Use the `AskUserQuestion` tool to present decisions as a **selectable UI** instead
+Use the `question` tool to present decisions as a **selectable UI** instead
 of plain markdown text. This gives the user a clean interface to pick from options
 (or type "Other" for a custom answer).
 
@@ -349,10 +349,10 @@ pattern:
    detailed pros/cons, theory references, example games, pillar alignment. This is
    where the reasoning lives.
 
-2. **Capture the decision** — Call `AskUserQuestion` with concise option labels
+2. **Capture the decision** — Call `question` with concise option labels
    and short descriptions. The user picks from the UI or types a custom answer.
 
-### When to Use AskUserQuestion
+### When to Use question
 
 ✅ **Use it for:**
 - Every decision point where you'd present 2-4 options
@@ -369,7 +369,7 @@ pattern:
   the tool: end with the options as a short labeled list and let the caller ask
 
 A question that comes back skipped, dismissed or empty is not an answer. Act on
-nothing; ask again in plain text and wait (`.claude/docs/automation-modes.md`).
+nothing; ask again in plain text and wait (`.opencode/docs/automation-modes.md`).
 
 ### Format Guidelines
 
@@ -384,7 +384,7 @@ nothing; ask again in plain text and wait (`.claude/docs/automation-modes.md`).
 After introducing the topic in conversation, batch constrained questions:
 
 ```
-AskUserQuestion:
+question:
   questions:
     - question: "Should crafting recipes be discovered or learned?"
       header: "Discovery"
@@ -411,7 +411,7 @@ AskUserQuestion:
 After writing the full pros/cons analysis in conversation text:
 
 ```
-AskUserQuestion:
+question:
   questions:
     - question: "Which crafting approach fits your vision?"
       header: "Approach"
@@ -429,7 +429,7 @@ AskUserQuestion:
 After presenting the full strategic analysis with pillar alignment:
 
 ```
-AskUserQuestion:
+question:
   questions:
     - question: "How should we handle crafting scope for Alpha?"
       header: "Scope"
@@ -445,12 +445,12 @@ AskUserQuestion:
 ### Team Skill Orchestration
 
 In team skills, subagents return their analysis as text. The **orchestrator**
-(main session) calls `AskUserQuestion` at each decision point between phases:
+(main session) calls `question` at each decision point between phases:
 
 ```
 [game-designer returns 3 combat approaches with analysis]
 
-Orchestrator uses AskUserQuestion:
+Orchestrator uses question:
   question: "Which combat approach should we develop?"
   options: [concise summaries of the 3 approaches]
 
@@ -474,7 +474,7 @@ Every file write must follow:
 2. User: "Yes" or "No, change X first" or "Show me the full draft"
 
 3. IF User says "Yes":
-   Agent: [Uses Write/Edit tool]
+   Agent: [Uses write/edit tool]
           "Written to [filepath]. Next steps?"
 
    IF User says "No":

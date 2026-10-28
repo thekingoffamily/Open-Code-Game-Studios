@@ -12,7 +12,7 @@ rest), and `accept <ADR-id>` (the only path that moves an ADR from `Proposed` to
 Normal authoring loads engine context first (`docs/engine-reference/[engine]/VERSION.md`,
 plus a knowledge-gap warning for MEDIUM/HIGH-risk domains), picks the next ADR
 number, checks `docs/registry/architecture.yaml` for binding stances, then
-presents its assumptions as a confirm/adjust `AskUserQuestion` (Status is always
+presents its assumptions as a confirm/adjust `question` (Status is always
 `Proposed` and is never asked). It then drafts the whole ADR from its template in
 one pass, has the primary engine specialist validate it (Step 5.5), runs the
 TD-ADR gate in `full` review mode only (Step 5.6), runs a GDD sync check that
@@ -28,7 +28,7 @@ settled. Authoring never sets `Accepted` and never unblocks stories.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains status/verdict keywords: `Proposed`, `Accepted`, and the TD-ADR outcomes `CONCERNS` / `REJECT`
 - [ ] Contains "May I write" collaborative protocol language (whole-ADR write approval and registry approval)
@@ -65,7 +65,7 @@ In every mode the written ADR has `Status: Proposed`.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -88,7 +88,7 @@ Fixture defaults.
 1. Step 1 reads `VERSION.md` first and displays the ENGINE KNOWLEDGE GAP WARNING for the Rendering domain
 2. Step 2 scans `docs/architecture/` and assigns ADR-0003
 3. Step 3a reads the registry before any existing ADR
-4. Step 4 presents assumptions (problem, 2–3 alternatives, GDD linkage, dependencies, `Status: Proposed`) as a confirm/adjust `AskUserQuestion`; no ADR is generated until the user confirms
+4. Step 4 presents assumptions (problem, 2–3 alternatives, GDD linkage, dependencies, `Status: Proposed`) as a confirm/adjust `question`; no ADR is generated until the user confirms
 5. Step 5 drafts the full template, including the Engine Compatibility table (engine, domain, knowledge risk, references consulted)
 6. `godot-specialist` validates the draft; minor notes go into the Risks section
 7. `technical-director` then spawns with gate TD-ADR and returns APPROVE
@@ -99,7 +99,7 @@ Fixture defaults.
 
 **Assertions:**
 - [ ] `VERSION.md` is read before any other step, and the knowledge-gap warning is shown for the HIGH-risk domain
-- [ ] Assumptions are confirmed via `AskUserQuestion` before the ADR is generated; Status is shown as `Proposed`, never asked
+- [ ] Assumptions are confirmed via `question` before the ADR is generated; Status is shown as `Proposed`, never asked
 - [ ] The engine specialist validation runs before TD-ADR (sequential, not parallel)
 - [ ] One "May I write" approval covers the whole ADR; the file is `docs/architecture/adr-0003-rendering-approach.md`
 - [ ] The written ADR has `Status: Proposed` even though TD-ADR returned APPROVE
@@ -121,14 +121,14 @@ Fixture defaults.
 1. TD-ADR spawns with the draft, engine version, domain and related ADRs
 2. The CONCERNS are shown to the user verbatim with the standard options from `director-gates.md`: `Revise flagged items` / `Accept and proceed` / `Discuss further`
 3. The user picks `Revise flagged items`; only then are the Decision or Alternatives sections revised (Step 5.6)
-4. The unresolved point is presented as its own `AskUserQuestion` with options from the review plus "Different approach — I'll describe it"
+4. The unresolved point is presented as its own `question` with options from the review plus "Different approach — I'll describe it"
 5. The write approval is still asked; nothing is written before it
 6. The ADR is written with `Status: Proposed`
 
 **Assertions:**
 - [ ] TD-ADR receives the ADR draft/path, engine version and domain as context
 - [ ] The CONCERNS are shown verbatim and the user chooses Revise / Accept / Discuss — the draft is not revised before that choice
-- [ ] Each unresolved decision is a separate `AskUserQuestion` with a free-text escape option
+- [ ] Each unresolved decision is a separate `question` with a free-text escape option
 - [ ] The ADR is written only after the "May I write" approval, with `Status: Proposed`
 
 ---
@@ -138,7 +138,7 @@ Fixture defaults.
 **Fixture:**
 - Scenario (a): `project.yaml` has `modes.review_mode: lean` and `engine.name: Godot`
 - Scenario (b): same project, invoked with `--review solo`
-- Scenario (c): invoked with `--review solo` on a project with no engine configured — `engine.name` unset and `.claude/docs/technical-preferences.md` still `[TO BE CONFIGURED]`; at Step 1's prompt the user carries on without running `/setup-engine`
+- Scenario (c): invoked with `--review solo` on a project with no engine configured — `engine.name` unset and `.opencode/docs/technical-preferences.md` still `[TO BE CONFIGURED]`; at Step 1's prompt the user carries on without running `/setup-engine`
 - `design/gdd/` holds no GDD, so the ADR's GDD Requirements Addressed names none
 
 **Input:** (a) `/architecture-decision save-format` (b) and (c) `/architecture-decision save-format --review solo`
@@ -274,7 +274,7 @@ Fixture defaults.
 ## Protocol Compliance
 
 - [ ] Engine context (`VERSION.md`) is loaded first and stamped into the Engine Compatibility table
-- [ ] Assumptions are confirmed via `AskUserQuestion` before the ADR is generated
+- [ ] Assumptions are confirmed via `question` before the ADR is generated
 - [ ] "May I write" is asked once for the whole ADR before writing; the registry update has its own approval
 - [ ] TD-ADR runs only in full mode; lean/solo print a skip note naming the gate and mode
 - [ ] TD-ADR CONCERNS are shown verbatim with `Revise flagged items` / `Accept and proceed` / `Discuss further`, never revised without the user's choice

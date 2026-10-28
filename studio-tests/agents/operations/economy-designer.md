@@ -10,8 +10,8 @@
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references economy, loot tables, progression curves, balance)
-- [ ] `tools:` reads `Read, Glob, Grep, Write, Edit` and `disallowedTools:` names `Bash` — design documents only, no code or analytics tooling
-- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] `permission:` reads `Read, Glob, Grep, Write, Edit` and `permission.bash:` names `Bash` — design documents only, no code or analytics tooling
+- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.opencode/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over live ops scheduling, code, or narrative
 
 ---

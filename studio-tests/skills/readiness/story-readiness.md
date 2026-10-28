@@ -27,10 +27,10 @@ retained screenshot is required at every `qa.level` (Case 6).
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings or numbered check sections
 - [ ] Contains verdict keywords: READY, NEEDS WORK, BLOCKED, NOT ASSESSED
-- [ ] Does NOT require "May I write" language — `allowed-tools` has no Write or Edit
+- [ ] Does NOT require "May I write" language — the skill never writes files
 - [ ] Has a next-step handoff (what to do after verdict)
 
 ---
@@ -39,7 +39,7 @@ Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -172,7 +172,7 @@ Fixture defaults.
    file path, story type, acceptance criteria (verbatim), the GDD requirement
    (TR-ID and text), dependency status and the Phase 4 verdict
 3. ADEQUATE → story cleared
-4. GAPS → `AskUserQuestion`: `Update story with suggested gaps` / `Accept and proceed anyway` / `Discuss further`
+4. GAPS → `question`: `Update story with suggested gaps` / `Accept and proceed anyway` / `Discuss further`
 5. INADEQUATE → the gate says the story must be revised before sprint inclusion:
    the checklist's READY is demoted to NEEDS WORK and the final verdict line is
    restated with the gaps; the user is asked whether to update the story or
@@ -183,7 +183,7 @@ Fixture defaults.
 **Assertions (5a):**
 - [ ] Skill uses the resolved review mode before deciding whether to spawn QL-STORY-READY
 - [ ] QL-STORY-READY is spawned only after the checklist verdict exists
-- [ ] A GAPS result produces the three-option `AskUserQuestion`
+- [ ] A GAPS result produces the three-option `question`
 - [ ] An INADEQUATE result overrides the checklist's READY: the final verdict is NEEDS WORK, restated with the gate's specific gaps
 - [ ] If the user proceeds anyway, the verdict stays NEEDS WORK and the output states the override ("proceeding despite QL-STORY-READY: INADEQUATE (user override)") — never a silent READY
 - [ ] A NOT ASSESSED answer from the gate names the missing input and never leaves READY standing: unless the input is supplied and the gate re-run, the verdict is NOT ASSESSED
@@ -341,6 +341,6 @@ Fixture defaults.
   a deprecated or superseded TR-ID is Case 9.
 - The zero-story scope is Case 7a; the `sprint` / `all` aggregate output over real
   stories and the Must Have sprint escalation warning are not tested here.
-- The no-argument path (scope chosen via `AskUserQuestion`) is not tested.
+- The no-argument path (scope chosen via `question`) is not tested.
 - Stories with multiple ADR references are not tested; behavior is assumed to
   be additive (all ADRs must be Accepted for READY verdict).

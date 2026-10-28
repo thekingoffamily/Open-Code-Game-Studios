@@ -25,7 +25,7 @@ recommendation.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings or numbered check sections
 - [ ] Contains burndown verdict keywords: On Track, At Risk, Behind
 - [ ] Does NOT require "May I write" language (read-only skill)
@@ -43,7 +43,7 @@ None. `/sprint-status` is a read-only reporting skill; no gates are invoked.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -257,7 +257,7 @@ Fixture defaults.
 - [ ] Presents the story status table before the Burndown verdict
 - [ ] Does not ask for approval
 - [ ] Ends with at most one recommended next step
-- [ ] Declares `model: haiku` (when a declared tier is used: `.claude/docs/model-tiers.md`)
+- [ ] Declares the documented Haiku tier (when a declared tier is used: `.opencode/docs/model-tiers.md`)
 
 ---
 

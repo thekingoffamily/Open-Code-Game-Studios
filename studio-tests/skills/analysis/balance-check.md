@@ -16,7 +16,7 @@ Analysis, a Priority-ranked Recommendations table and Values That Need Attention
 Inputs it cannot find make the affected section `NOT ASSESSED — NO DATA`, naming
 the missing source and `/design-system`, never an estimate; a value with no
 target is listed as `no stated range — not judged`. After the report, an
-`AskUserQuestion` offers [A] fix now, [B] save the report to
+`question` offers [A] fix now, [B] save the report to
 `design/balance/balance-check-[system]-[date].md`, [C] stop; it writes only on
 [B]. No director gates are invoked. Health Summary, first match wins: CRITICAL
 ISSUES, CONCERNS, NOT ASSESSED, HEALTHY.
@@ -27,10 +27,10 @@ ISSUES, CONCERNS, NOT ASSESSED, HEALTHY.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: HEALTHY, CONCERNS, CRITICAL ISSUES, NOT ASSESSED
-- [ ] Has ask-before-write language: the save is an `AskUserQuestion` option that names its target path, and the Write happens only when that option is chosen
+- [ ] Has ask-before-write language: the save is an `question` option that names its target path, and the Write happens only when that option is chosen
 - [ ] Has a next-step handoff (what to do after findings are reviewed)
 
 ---
@@ -45,7 +45,7 @@ None. Balance check is an analysis skill; no gates are invoked in any review mod
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -69,7 +69,7 @@ Fixture defaults.
 4. Each of the 6 values is compared with its GDD range and none falls outside; the combat checks find no dominant option
 5. Report lists `assets/data/combat-balance.json` and `design/gdd/combat-system.md` under Data Sources Analyzed; the Outliers Detected table has no rows
 6. Health Summary is HEALTHY
-7. Phase 6 `AskUserQuestion` offers [A] / [B] / [C]; nothing is written before the user chooses
+7. Phase 6 `question` offers [A] / [B] / [C]; nothing is written before the user chooses
 
 **Assertions:**
 - [ ] Data Sources Analyzed lists every file read, including the data file and the GDD
@@ -166,7 +166,7 @@ Fixture defaults.
 1. Skill asks the user which system to check; user answers "combat"
 2. Skill reads data and design targets and prints the report
 3. No director gate is invoked
-4. After the report, `AskUserQuestion` offers [A] fix now, [B] save to `design/balance/balance-check-combat-[date].md`, [C] stop
+4. After the report, `question` offers [A] fix now, [B] save to `design/balance/balance-check-combat-[date].md`, [C] stop
 5. On [B]: the report is written to `design/balance/balance-check-combat-[YYYY-MM-DD].md` (directory created if needed), the write is confirmed, and the skill ends with "Re-run `/balance-check` after fixes to verify."
 6. On [C]: nothing is written; open issues are summarized and the same re-run line ends the output
 

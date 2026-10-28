@@ -46,7 +46,7 @@ read-only and must not trigger director gates during the analysis phase.
 | **R5 — Structured findings** | Output contains a per-section status table or checklist before the final verdict |
 
 > **Exceptions:**
-> - `design-review`: Has `Write, Edit` in allowed-tools to support an optional "Revise now" path (all writes gated behind user approval) and to write review logs. R1 is satisfied because the reviewed document is never silently modified.
+> - `design-review`: Has `Write, Edit` in skill body to support an optional "Revise now" path (all writes gated behind user approval) and to write review logs. R1 is satisfied because the reviewed document is never silently modified.
 
 ---
 
@@ -178,10 +178,11 @@ gates, the gate mode logic must also be correct.
 ## Agent Categories
 
 Used by `/skill-test category [agent-name]` to evaluate an agent definition in
-`.claude/agents/` against its category's metrics.
+`.opencode/agents/` against its category's metrics.
 
-No category fixes a model. Each agent's tier is its own frontmatter `model:`,
-and its spec in `agents/` asserts that alias; see `.claude/docs/model-tiers.md`.
+No category fixes a model. An agent's model comes from its `model:` frontmatter
+or `opencode.json`; a spec asserts the documented tier, not a vendor model id.
+See `.opencode/docs/model-tiers.md`.
 
 ### `director`
 
@@ -249,4 +250,4 @@ analytics-engineer, economy-designer, localization-lead
 |---|---|
 | **O1 — Domain ownership clear** | Agent description clearly states what it owns (pipeline, releases, economy, etc.) |
 | **O2 — Defers implementation** | Does not write game logic or engine code; delegates to appropriate specialist |
-| **O3 — Toolset matches role** | `tools:` in frontmatter matches the operational (not coding) nature of the role |
+| **O3 — Toolset matches role** | `permission:` in frontmatter matches the operational (not coding) nature of the role |

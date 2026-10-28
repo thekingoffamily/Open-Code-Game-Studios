@@ -9,11 +9,11 @@
 
 ## Static Assertions (Structural)
 
-Verified by reading the agent's `.claude/agents/technical-director.md` frontmatter:
+Verified by reading the agent's `.opencode/agents/technical-director.md` frontmatter:
 
 - [ ] `description:` field is present and domain-specific (references architecture, feasibility, ADR — not generic)
-- [ ] `tools:` reads Read, Glob, Grep, Write, Edit, Bash, WebSearch
-- [ ] Model tier is `opus` — frontmatter `model:` reads exactly `opus` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] `permission:` reads Read, Glob, Grep, Write, Edit, Bash, WebSearch
+- [ ] Model tier is `opus` — frontmatter `model:` reads exactly `opus` (tiers: `.opencode/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over game design decisions or creative direction
 
 ---

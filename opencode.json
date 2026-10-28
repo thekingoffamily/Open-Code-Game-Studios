@@ -1,0 +1,80 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": [
+    "AGENTS.md",
+    ".opencode/docs/directory-structure.md",
+    ".opencode/docs/coordination-rules.md",
+    ".opencode/docs/coding-standards.md",
+    "docs/engine-reference/godot/VERSION.md",
+    ".opencode/rules/agent-memory.md",
+    ".opencode/rules/ai-code.md",
+    ".opencode/rules/data-files.md",
+    ".opencode/rules/design-docs.md",
+    ".opencode/rules/engine-code.md",
+    ".opencode/rules/gameplay-code.md",
+    ".opencode/rules/narrative.md",
+    ".opencode/rules/network-code.md",
+    ".opencode/rules/prototype-code.md",
+    ".opencode/rules/scene-files.md",
+    ".opencode/rules/shader-code.md",
+    ".opencode/rules/skill-authoring.md",
+    ".opencode/rules/test-standards.md",
+    ".opencode/rules/ui-code.md"
+  ],
+  "skills": {
+    "paths": [".opencode/skills"]
+  },
+  "permission": {
+    "bash": {
+      "*": "ask",
+      "bash .opencode/*": "allow",
+      "bash \".opencode/*": "allow",
+      ".opencode/hooks/*": "allow",
+      ".opencode/scripts/*": "allow",
+      "git status*": "allow",
+      "git diff*": "allow",
+      "git log*": "allow",
+      "dir *": "allow",
+      "python -m pytest *": "allow",
+      "py -m pytest *": "allow",
+      "rm -rf*": "deny",
+      "rm -fr*": "deny",
+      "rm -r -f*": "deny",
+      "rm -f -r*": "deny",
+      "rm -Rf*": "deny",
+      "rm -fR*": "deny",
+      "sudo *": "deny",
+      "chmod 777*": "deny",
+      "git push --force*": "deny",
+      "git push -f *": "deny",
+      "git push *--force*": "deny",
+      "git push * -f*": "deny",
+      "git push * +*": "deny",
+      "git * push *--force*": "deny",
+      "git *push* -f*": "deny",
+      "git *push* -uf*": "deny",
+      "git *push* +*": "deny",
+      "git reset --hard*": "deny",
+      "git *reset *--hard*": "deny",
+      "git clean* -f*": "deny",
+      "git clean* --force*": "deny",
+      "git clean* -df*": "deny",
+      "git clean* -dxf*": "deny",
+      "git clean* -xf*": "deny",
+      "git *clean* -f*": "deny",
+      "git *clean* --force*": "deny"
+    },
+    "edit": {
+      "*": "allow",
+      "**/.env": "deny",
+      "**/.env.*": "deny",
+      "**/*.uasset": "deny",
+      "**/*.umap": "deny"
+    },
+    "read": {
+      "*": "allow",
+      "**/.env": "deny",
+      "**/.env.*": "deny"
+    }
+  }
+}

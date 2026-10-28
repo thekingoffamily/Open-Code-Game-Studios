@@ -6,14 +6,14 @@
 of architectural decisions covers the game's design. It extracts technical
 requirements (TR-IDs) from every GDD, maps each one to the ADRs that cover it
 in a traceability matrix, detects cross-ADR conflicts, orders ADRs by
-dependency (via `.claude/scripts/adr-dep-graph.sh`), audits engine
+dependency (via `.opencode/scripts/adr-dep-graph.sh`), audits engine
 compatibility against `docs/engine-reference/`, consults the primary engine
 specialist, and checks `docs/architecture/architecture.md` coverage of the
 systems index. It produces a PASS / CONCERNS / NOT ASSESSED / FAIL verdict.
 
 It takes a focus argument (`full` by default, or `coverage`, `consistency`,
 `engine`, `single-gdd [path]`, `rtm`). After the report, it asks via
-`AskUserQuestion` before writing the review report
+`question` before writing the review report
 (`docs/architecture/architecture-review-[date].md`), the traceability index and
 `docs/architecture/tr-registry.yaml`. It is the quality gate between Technical
 Setup and Pre-Production.
@@ -24,10 +24,10 @@ Setup and Pre-Production.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: PASS, CONCERNS, NOT ASSESSED, FAIL
-- [ ] `allowed-tools` includes Write, so write-approval language is present ("May I update the systems index?", "May I update `docs/architecture/tr-registry.yaml`…")
+- [ ] the skill writes files, so write-approval language is present ("May I update the systems index?", "May I update `docs/architecture/tr-registry.yaml`…")
 - [ ] Has a next-step handoff at the end (Phase 9)
 - [ ] Documents the argument modes: `full`, `coverage`, `consistency`, `engine`, `single-gdd [path]`, `rtm`
 
@@ -47,7 +47,7 @@ this skill.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -79,7 +79,7 @@ Fixture defaults.
    targeted Greps rather than whole files, and reports
    "Loaded [N] GDDs, [M] ADRs, engine: Godot 4.6"
 3. Skill extracts TR-IDs (reusing any existing `tr-registry.yaml` IDs) and builds the matrix
-4. Skill runs `bash .claude/scripts/adr-dep-graph.sh` and prints the recommended implementation order from its `ORDER:` row
+4. Skill runs `bash .opencode/scripts/adr-dep-graph.sh` and prints the recommended implementation order from its `ORDER:` row
 5. Skill runs the engine audit and consults `godot-specialist`
 6. Report ends with `### Verdict: PASS`
 7. Phase 8 asks what to write; Phase 9 offers `/gate-check pre-production`
@@ -91,7 +91,7 @@ Fixture defaults.
 - [ ] Verdict is PASS only because all requirements are covered by **Accepted** ADRs, no conflicts exist, and engine references agree
 - [ ] The report header has `Mode: full` and `Workflow: full` lines
 - [ ] The report includes the `review-receipts.sh hash` lines for every review input (ADRs, GDDs, TR registry, engine reference, `project.yaml`, the skill's own files), taken after the TR registry is written
-- [ ] No file is written before the Phase 8 `AskUserQuestion` (`[A]` all three files / `[B]` report only at `docs/architecture/architecture-review-[date].md` / `[C]` nothing yet)
+- [ ] No file is written before the Phase 8 `question` (`[A]` all three files / `[B]` report only at `docs/architecture/architecture-review-[date].md` / `[C]` nothing yet)
 - [ ] The closing widget offers `/gate-check pre-production`, because every pre-gate checklist item is ✅
 
 ---
@@ -195,11 +195,11 @@ Fixture defaults.
 ## Protocol Compliance
 
 - [ ] Shows the full traceability matrix before any write approval (the Phase 1a freshness question and Phase 2's ambiguous-requirement questions may come earlier)
-- [ ] Every write approval uses `AskUserQuestion` with labelled options, not a plain-text "May I?"
+- [ ] Every write approval uses `question` with labelled options, not a plain-text "May I?"
 - [ ] Shows the content to be written (report, systems-index rows) before asking to write it
 - [ ] Never renumbers or deletes existing `tr-registry.yaml` entries; marking one deprecated is confirmed with the user
 - [ ] Verdict is one of exactly: PASS, CONCERNS, NOT ASSESSED, FAIL
-- [ ] Ends with a Phase 9 handoff via `AskUserQuestion`; `/gate-check` is not offered while any pre-gate item is ❌
+- [ ] Ends with a Phase 9 handoff via `question`; `/gate-check` is not offered while any pre-gate item is ❌
 
 ---
 

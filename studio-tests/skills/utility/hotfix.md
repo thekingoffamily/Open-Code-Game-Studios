@@ -6,7 +6,7 @@
 It runs only when the user types it (`disable-model-invocation: true`). The flow:
 
 1. **Assess severity** (S1 Critical / S2 High / S3 or lower, on `/bug-triage`'s scale) and confirm it with
-   `AskUserQuestion`; S3 or lower stops with `Verdict: **REDIRECTED**`.
+   `question`; S3 or lower stops with `Verdict: **REDIRECTED**`.
 2. **Hotfix record** — asks "May I write this to
    `production/hotfixes/hotfix-[date]-[short-name].md`?"
 3. **Branch** — checks for a git repo, then asks before running
@@ -21,7 +21,7 @@ It runs only when the user types it (`disable-model-invocation: true`). The flow
    `/team-qa feature: [system]`, or full QA; a smoke-check FAIL sends the fix
    back to Phase 4. A NOT ASSESSED result is not a pass: deploying anyway takes
    an explicit producer decision, logged in the hotfix record.
-7. **Deploy** — an unconditional `AskUserQuestion` before any merge, tag or deploy
+7. **Deploy** — an unconditional `question` before any merge, tag or deploy
    (even in `autonomous` mode); merge to `main`, and to the release's
    `release/*` branch only if one exists; tag the patch release and verify the
    backport; ask before updating the bug file, then set it to
@@ -44,7 +44,7 @@ complete feature failure.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Frontmatter sets `disable-model-invocation: true`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: REDIRECTED, APPROVE / CONCERNS / REJECT (sign-offs), NOT ASSESSED (QA gate)
@@ -67,7 +67,7 @@ choose the QA scope.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -86,7 +86,7 @@ Fixture defaults.
 **Input:** `/hotfix BUG-0031`
 
 **Expected behavior:**
-1. Assesses S1 and confirms via `AskUserQuestion`; user picks `[A] S1 (Critical)`
+1. Assesses S1 and confirms via `question`; user picks `[A] S1 (Critical)`
 2. Asks "May I write this to `production/hotfixes/hotfix-[date]-boss-arena-crash.md`?" and writes it
 3. Runs `git rev-parse --is-inside-work-tree`, asks "Ready to create hotfix branch
    'hotfix/boss-arena-crash' from v1.2.0?", and runs
@@ -133,7 +133,7 @@ Fixture defaults.
 **Assertions:**
 - [ ] The qa-tester's REJECT and its regression are shown to the user
 - [ ] Skill does not proceed to deployment with a REJECT outstanding
-- [ ] The deploy `AskUserQuestion` is not issued while the REJECT stands
+- [ ] The deploy `question` is not issued while the REJECT stands
 - [ ] No merge is performed
 
 ---
@@ -179,7 +179,7 @@ Fixture defaults.
 3. Skill stops: Verdict REDIRECTED — use the normal bug fix workflow for S3 and below
 
 **Assertions:**
-- [ ] Severity is confirmed via `AskUserQuestion` with S1 / S2 / S3-or-lower options
+- [ ] Severity is confirmed via `question` with S1 / S2 / S3-or-lower options
 - [ ] Verdict is REDIRECTED
 - [ ] No hotfix record is written and no branch is created
 - [ ] No code is modified and no agents are spawned

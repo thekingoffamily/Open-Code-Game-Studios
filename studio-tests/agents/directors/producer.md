@@ -9,11 +9,11 @@
 
 ## Static Assertions (Structural)
 
-Verified by reading the agent's `.claude/agents/producer.md` frontmatter:
+Verified by reading the agent's `.opencode/agents/producer.md` frontmatter:
 
 - [ ] `description:` field is present and domain-specific (references scope, sprint, milestone, production — not generic)
-- [ ] `tools:` includes Write and Edit (it authors sprint plans per its Output Format and maintains the risk register) and Bash only because a preloaded skill needs it (`skills:` includes `scope-check`, which reads `git log`)
-- [ ] Model tier is `opus` — frontmatter `model:` reads exactly `opus` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] `permission:` includes Write and Edit (it authors sprint plans per its Output Format and maintains the risk register) and Bash only because a preloaded skill needs it (`skills:` includes `scope-check`, which reads `git log`)
+- [ ] Model tier is `opus` — frontmatter `model:` reads exactly `opus` (tiers: `.opencode/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over design decisions or technical architecture
 
 ---

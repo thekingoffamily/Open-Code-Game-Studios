@@ -46,7 +46,7 @@
 #   Sections: entities | items | formulas | constants
 #   Each entry: name, status, source, referenced_by[], attributes{}, added, revised
 #
-# LAYOUT: the one shape .claude/scripts/registry.sh reads. Each section is a
+# LAYOUT: the one shape .opencode/scripts/registry.sh reads. Each section is a
 #   key at column 0 holding a block list, or [] while it is empty. Each entry
 #   starts "- name: <name>" with the dash at column 2 (or 0, the same for every
 #   entry of a section); its fields sit two columns past the dash, and a deeper

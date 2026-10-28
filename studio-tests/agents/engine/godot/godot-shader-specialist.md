@@ -10,8 +10,8 @@ No gate IDs assigned.
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references Godot shading language / materials / post-processing)
-- [ ] `tools:` list includes Read, Write, Edit, Glob, Grep
-- [ ] Model tier is `sonnet` — frontmatter `model:` reads exactly `sonnet` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] `permission:` list includes Read, Write, Edit, Glob, Grep
+- [ ] Model tier is `sonnet` — frontmatter `model:` reads exactly `sonnet` (tiers: `.opencode/docs/model-tiers.md`)
 - [ ] Agent definition references `docs/engine-reference/godot/VERSION.md` as the authoritative source for Godot shader API changes
 
 ---

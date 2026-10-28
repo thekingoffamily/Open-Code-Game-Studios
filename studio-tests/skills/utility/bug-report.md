@@ -39,7 +39,7 @@ asks before it writes anything.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: COMPLETE, BLOCKED (and VERIFIED FIXED / STILL PRESENT / CANNOT VERIFY for Verify Mode)
 - [ ] Contains "May I write" language before writing the report and "May I update" before changing an existing bug file
@@ -57,7 +57,7 @@ None. `/bug-report` is an operational documentation skill. No director gates app
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -207,7 +207,7 @@ Fixture defaults.
    missing `BUG-0042.md`
 2. It checks the root-cause code path (changed) and looks for a related test
    (none), then greps for the pattern recurring
-3. No test ran, so it asks via `AskUserQuestion` whether the user played the
+3. No test ran, so it asks via `question` whether the user played the
    reproduction steps on a build with the fix — `[No longer occurs]` /
    `[Still occurs]` / `[Not played yet]`; the user answers `[Not played yet]`
 4. The verdict is **CANNOT VERIFY**: it names what is missing (no related test)
@@ -241,7 +241,7 @@ Fixture defaults.
 **Expected behavior:**
 1. Verify finds no related test and runs no runner line of its own — `commands.test`
    is unset, and it says so
-2. It asks via `AskUserQuestion` whether the user played the reproduction steps
+2. It asks via `question` whether the user played the reproduction steps
    on a build with the fix, and which build — `[No longer occurs]` /
    `[Still occurs]` / `[Not played yet]`; the user answers `[No longer occurs]`,
    build `0.3.1`

@@ -6,7 +6,7 @@
 before implementation. `sprint` reads the most recent file in
 `production/sprints/` (or `production/sprint-status.yaml` when present) for its
 story list; `feature:` globs `production/epics/*/story-*.md` by system name;
-`story:` loads one file; no argument asks for the scope with `AskUserQuestion`.
+`story:` loads one file; no argument asks for the scope with `question`.
 A referenced story file that does not exist is noted as MISSING and the plan
 continues; a scope with zero stories stops with `NOT ASSESSED — no stories in
 scope` and a route (e.g. "No sprint plan found. Run `/sprint-plan new`.").
@@ -16,7 +16,7 @@ as-is; a missing one is inferred from the acceptance criteria and flagged as a
 gap. A story with no `## Acceptance Criteria` is full-read and reported as a QA
 finding, never skipped. After a classification summary table, the plan
 (Test Summary, Automated Tests Required, Manual QA Checklist, Smoke Test Scope,
-Playtest Requirements, Definition of Done) is shown, then one `AskUserQuestion`
+Playtest Requirements, Definition of Done) is shown, then one `question`
 (multiSelect) asks whether to write `production/qa/qa-plan-[sprint-slug]-[date].md`
 and whether to back-fill `## QA Test Cases` in the story files. `qa.level`
 changes the plan's depth, but no level drops the Visual/Feel and UI screenshot
@@ -28,10 +28,10 @@ rows. No director gates apply.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains the verdict keyword `NOT ASSESSED` for an empty scope
-- [ ] Asks for approval before writing: an `AskUserQuestion` option naming `production/qa/qa-plan-[sprint-slug]-[date].md`, and the rule "Never write the plan without asking"
+- [ ] Asks for approval before writing: an `question` option naming `production/qa/qa-plan-[sprint-slug]-[date].md`, and the rule "Never write the plan without asking"
 - [ ] Has a next-step handoff (`/smoke-check sprint` after implementation, `/story-done` checks for the test files)
 
 ---
@@ -47,7 +47,7 @@ its allowed tools) and no director gates apply.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -75,7 +75,7 @@ Fixture defaults.
    Integration → integration test under `tests/integration/[system]/`,
    Visual/Feel → screenshot + lead sign-off, UI → retained screenshot of each
    screen touched
-5. The plan is shown, then one multiSelect `AskUserQuestion` offers "Write QA
+5. The plan is shown, then one multiSelect `question` offers "Write QA
    plan to production/qa/qa-plan-[sprint-slug]-[date].md" and the story
    back-fill option
 6. After writing, next steps name `/smoke-check sprint` (after implementation)
@@ -195,7 +195,7 @@ Fixture defaults.
 - [ ] Accepts declared `Type:` values; infers and flags a missing Type
 - [ ] Never skips a story because its acceptance-criteria section is absent
 - [ ] Shows the classification table and the plan before asking to write
-- [ ] Writes only after the `AskUserQuestion` approval; back-fills story files only when that option is selected
+- [ ] Writes only after the `question` approval; back-fills story files only when that option is selected
 
 ---
 

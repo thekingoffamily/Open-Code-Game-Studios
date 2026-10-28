@@ -36,7 +36,7 @@ record is written to `production/releases/day-one-patch-[version].md` after a
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Frontmatter sets `disable-model-invocation: true`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: PASS, PASS WITH WARNINGS, NOT ASSESSED, FAIL
@@ -59,7 +59,7 @@ producer, art-director) is spawned. The skill spawns working agents —
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -81,7 +81,7 @@ Fixture defaults.
 **Expected behavior:**
 1. Phase 1 confirms Release stage and a passing release gate
 2. Phase 2 proposes including BUG-0010 and BUG-0011 and deferring BUG-0012
-   ("Fix requires architecture change — defer to 1.1"); `AskUserQuestion` offers
+   ("Fix requires architecture change — defer to 1.1"); `question` offers
    Approve / Adjust / No day-one patch needed
 3. After approval, `release-manager` drafts the rollback plan and the skill asks
    "May I write this rollback plan to `production/releases/rollback-plan-[version].md`?"
@@ -99,7 +99,7 @@ Fixture defaults.
 
 **Assertions:**
 - [ ] BUG-0012 is deferred to 1.1 because it needs an architecture change
-- [ ] Scope is approved via `AskUserQuestion` before any work
+- [ ] Scope is approved via `question` before any work
 - [ ] The rollback plan is written before any fix is attempted
 - [ ] No code file changes before the one "May I apply these fixes?" ask is approved, and `lead-programmer` writes nothing while proposing
 - [ ] BUG-0011 is fixed without spawning `lead-programmer`

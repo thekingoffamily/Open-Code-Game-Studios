@@ -13,9 +13,9 @@ delegates vs. handles directly. Include which gates it triggers (if any).]
 
 ## Static Assertions (Structural)
 
-- [ ] Agent file exists at `.claude/agents/[name].md`
-- [ ] Frontmatter has `name`, `description`, `model`, `tools` fields
-- [ ] Model tier is `[opus | sonnet | haiku | inherit]` — frontmatter `model:` reads exactly that alias (tiers: `.claude/docs/model-tiers.md`)
+- [ ] Agent file exists at `.opencode/agents/[name].md`
+- [ ] Frontmatter has `name`, `description`, `mode` and `permission` fields
+- [ ] Model tier is documented for this role in `.opencode/docs/model-tiers.md` — a pinned `model:` uses a full `provider/model-id`, and an unpinned agent inherits the session model
 - [ ] Domain clearly stated
 - [ ] Escalation path documented
 - [ ] Does not make decisions outside its domain

@@ -12,7 +12,7 @@ the active set before any spawn — the default `individual` spawns ui-programme
 ux-designer, `small` adds accessibility-specialist + art-director, `studio` adds the
 engine UI specialist and an adversarial Phase 4 review. Phase 1a reports each of its five inputs as present or ABSENT,
 and a missing `design/accessibility-requirements.md` is carried forward as
-`Accessibility: NOT ASSESSED`. Uses `AskUserQuestion` at each phase transition.
+`Accessibility: NOT ASSESSED`. Uses `question` at each phase transition.
 Delegates all file writes to sub-agents and sub-skills (`/ux-design`,
 `ui-programmer`). Produces a summary report with verdict COMPLETE / BLOCKED and
 handoffs to `/ux-review`, `/code-review`, `/team-polish`.
@@ -21,20 +21,20 @@ handoffs to `/ux-review`, `/code-review`, `/team-polish`.
 
 ## Static Assertions (Structural)
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings (Phase 1a through Phase 5 are all present)
 - [ ] Contains verdict keywords: COMPLETE, BLOCKED
 - [ ] File Write Protocol: sub-agents write under the bounded exception (named path, new artifact under `production/`, `docs/` or `tests/`, gated phase) and ask outside it; sub-skills (`/ux-design`) ask before writing; the orchestrator does not write files directly; implementation files (code, shaders, audio, assets) are outside it — each agent lists the files it will create or change, and the skill asks once for the set before any is written
 - [ ] Names a destination per agent under `production/ui/[feature-name]/`: `visual-design.md` (art-director, Phase 2), `engine-notes.md` (engine UI specialist), `review-[agent].md` (each Phase 4 reviewer, one file each)
 - [ ] Defines a phase gate as a decision point the pipeline itself lists, whatever the `automation` mode, and claims no director spawn at phase gates
 - [ ] Has a next-step handoff at the end (references `/ux-review`, `/code-review`, `/team-polish`)
-- [ ] Error Recovery Protocol section is present: verify a named artifact is on disk, surface BLOCKED immediately, always produce a partial report, full procedure (surface → assess → options → partial report) in `.claude/docs/error-recovery-protocol.md`
-- [ ] Uses `AskUserQuestion` at phase transitions for user approval before proceeding (`collaborative` mode)
+- [ ] Error Recovery Protocol section is present: verify a named artifact is on disk, surface BLOCKED immediately, always produce a partial report, full procedure (surface → assess → options → partial report) in `.opencode/docs/error-recovery-protocol.md`
+- [ ] Uses `question` at phase transitions for user approval before proceeding (`collaborative` mode)
 - [ ] Phase 0 resolves `team.size`, and the skill requires a one-line active-set announcement before any spawn
 - [ ] Phase 4 is explicitly marked as parallel (ux-designer, art-director, accessibility-specialist)
 - [ ] UX Review Gate (Phase 1c) is defined as a blocking gate — skill must not proceed to Phase 2 without APPROVED verdict, except by an explicit user override of NEEDS REVISION or NOT ASSESSED, which the final report records
 - [ ] Team Composition lists all five roles (ux-designer, ui-programmer, art-director, engine UI specialist, accessibility-specialist)
-- [ ] Engine UI specialist is read from `specialists.ui` in `project.yaml` (falling back to `.claude/docs/technical-preferences.md`), and `specialists.ui: null` is treated as unset
+- [ ] Engine UI specialist is read from `specialists.ui` in `project.yaml` (falling back to `.opencode/docs/technical-preferences.md`), and `specialists.ui: null` is treated as unset
 - [ ] References the interaction pattern library (`design/ux/interaction-patterns.md`) — ui-programmer must use existing patterns
 - [ ] Phase 1a reads `design/accessibility-requirements.md` before design begins
 
@@ -44,7 +44,7 @@ handoffs to `/ux-review`, `/code-review`, `/team-polish`.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -66,9 +66,9 @@ Fixture defaults.
 **Expected behavior:**
 1. Before any spawn, one line announces the active set for `team.size: studio`
 2. Phase 1a — orchestrator reads game-concept.md, player-journey.md, relevant GDD UI sections, interaction-patterns.md, accessibility-requirements.md; reports each input as present or ABSENT; summarizes a brief for the ux-designer
-3. Phase 1b — `/ux-design inventory-screen` invoked (or ux-designer spawned directly); produces `design/ux/inventory-screen.md` using `ux-spec.md` template; `AskUserQuestion` confirms spec before review
+3. Phase 1b — `/ux-design inventory-screen` invoked (or ux-designer spawned directly); produces `design/ux/inventory-screen.md` using `ux-spec.md` template; `question` confirms spec before review
 4. Phase 1c — `/ux-review design/ux/inventory-screen.md` invoked; returns APPROVED; gate passed, proceed to Phase 2
-5. Phase 2 — art-director spawned; reviews full UX spec (not only wireframes); applies visual treatment; verifies color contrast; produces visual design spec with asset manifest; `AskUserQuestion` confirms before Phase 3
+5. Phase 2 — art-director spawned; reviews full UX spec (not only wireframes); applies visual treatment; verifies color contrast; produces visual design spec with asset manifest; `question` confirms before Phase 3
 6. Phase 3 — `godot-specialist` (from `specialists.ui`) spawned first; produces implementation notes for ui-programmer; ui-programmer spawned with UX spec + visual spec + engine notes; implementation produced; interaction-patterns.md updated if new patterns introduced
 7. Phase 4 — ux-designer, art-director, accessibility-specialist spawned in parallel, each told to find where the implementation fails its spec rather than confirm it matches (the `studio` adversarial pass); all three return results before Phase 5
 8. Phase 5 — review feedback addressed; animations verified skippable; UI sounds confirmed through audio event system; interaction-patterns.md final check
@@ -102,7 +102,7 @@ Fixture defaults.
 1. Phase 1a + 1b complete — UX spec produced
 2. Phase 1c — `/ux-review design/ux/inventory-screen.md` returns NEEDS REVISION
 3. Skill does NOT advance to Phase 2
-4. `AskUserQuestion` presented with the specific flagged concerns and options:
+4. `question` presented with the specific flagged concerns and options:
    - (a) Return to ux-designer to address the issues and re-review
    - (b) Accept the risk and proceed to Phase 2 anyway (conscious decision)
 5. If user chooses (a): ux-designer revises spec, `/ux-review` re-run; loop continues until APPROVED or user overrides
@@ -111,7 +111,7 @@ Fixture defaults.
 
 **Assertions:**
 - [ ] Phase 2 does NOT begin while UX review verdict is NEEDS REVISION
-- [ ] `AskUserQuestion` presents the specific flagged concerns before offering options
+- [ ] `question` presents the specific flagged concerns before offering options
 - [ ] User must make a conscious choice to override — skill does not assume override
 - [ ] If user accepts risk, the final report records the override: the NEEDS REVISION verdict, the concerns left open, and that the user chose to proceed
 - [ ] Revision-and-re-review loop is offered (not just a one-shot failure)
@@ -119,7 +119,7 @@ Fixture defaults.
 
 **Variant B — `/ux-review` returns NOT ASSESSED:**
 - Fixture as above, except `design/accessibility-requirements.md` is absent and the other review dimensions find no gaps, so `/ux-review` returns NOT ASSESSED (accessibility: no committed tier)
-- Expected: Phase 2 does not begin; `AskUserQuestion` names the unassessed dimension and its missing input (`/ux-design accessibility`), with options to produce that input and re-run the review, or to proceed consciously; if the user proceeds, the final report records the NOT ASSESSED override and Phase 4 still reports `Accessibility: NOT ASSESSED — no committed tier (design/accessibility-requirements.md absent)`
+- Expected: Phase 2 does not begin; `question` names the unassessed dimension and its missing input (`/ux-design accessibility`), with options to produce that input and re-run the review, or to proceed consciously; if the user proceeds, the final report records the NOT ASSESSED override and Phase 4 still reports `Accessibility: NOT ASSESSED — no committed tier (design/accessibility-requirements.md absent)`
 
 **Assertions (variant B):**
 - [ ] Phase 2 does NOT begin on NOT ASSESSED without an explicit user decision — it blocks like NEEDS REVISION
@@ -144,7 +144,7 @@ Fixture defaults.
 
 **Assertions:**
 - [ ] Skill does NOT spawn any subagents when no argument is given
-- [ ] Usage message shows the full argument-hint: `/team-ui [UI feature description] [--review full|lean|solo]`
+- [ ] Usage message shows the full command description: `/team-ui [UI feature description] [--review full|lean|solo]`
 - [ ] At least one example of a valid invocation is shown
 - [ ] No UX spec files or GDDs read before failing
 - [ ] Verdict is NOT shown (pipeline never starts)
@@ -170,14 +170,14 @@ Fixture defaults.
    - art-director: verifies visual consistency with art bible at minimum and maximum supported resolutions
    - accessibility-specialist: audits against the Standard accessibility tier in `design/accessibility-requirements.md`; any violation flagged as a blocker
 4. Skill waits for all three results before proceeding to Phase 5
-5. `AskUserQuestion` presents all three review results before Phase 5 begins
+5. `question` presents all three review results before Phase 5 begins
 
 **Assertions:**
 - [ ] All three Agent calls issued before any result is awaited (parallel, not sequential)
 - [ ] Phase 5 does NOT begin until all three Phase 4 agents have returned
 - [ ] Accessibility-specialist explicitly reads `design/accessibility-requirements.md` for the committed tier
 - [ ] Accessibility violations flagged as BLOCKING (not merely advisory)
-- [ ] `AskUserQuestion` shows all three review streams' results together before Phase 5 approval
+- [ ] `question` shows all three review streams' results together before Phase 5 approval
 - [ ] No Phase 4 agent's output is used as input for another Phase 4 agent
 
 ---
@@ -194,7 +194,7 @@ Fixture defaults.
 **Expected behavior:**
 1. Phase 1a — orchestrator attempts to read `design/ux/interaction-patterns.md`; file not found
 2. Skill surfaces the gap: "interaction-patterns.md does not exist — no existing patterns to reuse"
-3. `AskUserQuestion` presented with options:
+3. `question` presented with options:
    - (a) Run `/ux-design patterns` first to establish the pattern library, then continue
    - (b) Proceed without the pattern library — ui-programmer will treat all patterns created as new and add each to a new `design/ux/interaction-patterns.md` at completion
 4. Skill does NOT invent or assume patterns from other sources
@@ -204,7 +204,7 @@ Fixture defaults.
 **Assertions:**
 - [ ] Skill does NOT silently ignore the missing pattern library
 - [ ] Skill does NOT invent patterns by guessing from the feature name or GDD alone
-- [ ] `AskUserQuestion` offers a "create pattern library first" option (referencing `/ux-design patterns`)
+- [ ] `question` offers a "create pattern library first" option (referencing `/ux-design patterns`)
 - [ ] If user proceeds without the library, ui-programmer is told to treat all patterns as new
 - [ ] Final report documents pattern library status (created / absent / updated)
 - [ ] Skill does NOT fail entirely — the gap is noted and user is given a choice
@@ -248,7 +248,7 @@ Fixture defaults.
 ## Protocol Compliance
 
 - [ ] At the default `team.size: individual`, the run opens with an `Active set (team.size: individual): ui-programmer + ux-designer` line and a `Not spawned this run:` line naming art-director, accessibility-specialist and the engine UI specialist — before any agent is spawned
-- [ ] In `collaborative` mode, `AskUserQuestion` used at each phase transition — user approves before pipeline advances
+- [ ] In `collaborative` mode, `question` used at each phase transition — user approves before pipeline advances
 - [ ] UX Review Gate (Phase 1c) is blocking — Phase 2 cannot begin without APPROVED, or an explicit user override of a NEEDS REVISION or NOT ASSESSED verdict that the final report records
 - [ ] When `design/accessibility-requirements.md` is absent, Phase 4 reports `Accessibility: NOT ASSESSED — no committed tier (design/accessibility-requirements.md absent)` and never reports the accessibility gate as passed
 - [ ] When no engine is configured, the engine UI specialist is skipped and the run output records `Engine validation: NOT ASSESSED — no engine configured`

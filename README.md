@@ -1,79 +1,83 @@
 <p align="center">
-  <h1 align="center">Claude Code Game Studios</h1>
+  <a href="README.en.md">English</a> | <b>Русский</b>
+</p>
+
+<p align="center">
+  <h1 align="center">OpenCode Game Studios</h1>
   <p align="center">
-    Turn a single Claude Code session into a full game development studio.
+    Превращает одну сессию opencode в полноценную студию разработки игр.
     <br />
-    49 agents. 74 skills. One coordinated AI team.
+    49 агентов. 74 навыка. Одна согласованная ИИ-команда.
   </p>
 </p>
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
-  <a href=".claude/agents"><img src="https://img.shields.io/badge/agents-49-blueviolet" alt="49 Agents"></a>
-  <a href=".claude/skills"><img src="https://img.shields.io/badge/skills-74-green" alt="74 Skills"></a>
-  <a href=".claude/hooks"><img src="https://img.shields.io/badge/hooks-15-orange" alt="15 Hooks"></a>
-  <a href=".claude/rules"><img src="https://img.shields.io/badge/rules-14-red" alt="14 Rules"></a>
-  <a href="https://code.claude.com/docs"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-f5f5f5?logo=anthropic" alt="Built for Claude Code"></a>
-  <a href="https://www.buymeacoffee.com/donchitos3"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support%20this%20project-FFDD00?logo=buymeacoffee&logoColor=black" alt="Buy Me a Coffee"></a>
-  <a href="https://github.com/sponsors/Donchitos"><img src="https://img.shields.io/badge/GitHub%20Sponsors-Support%20this%20project-ea4aaa?logo=githubsponsors&logoColor=white" alt="GitHub Sponsors"></a>
+  <a href=".opencode/agents"><img src="https://img.shields.io/badge/agents-49-blueviolet" alt="49 агентов"></a>
+  <a href=".opencode/skills"><img src="https://img.shields.io/badge/skills-74-green" alt="74 навыка"></a>
+  <a href=".opencode/commands"><img src="https://img.shields.io/badge/commands-74-blue" alt="74 команды"></a>
+  <a href=".opencode/plugins"><img src="https://img.shields.io/badge/plugins-1-orange" alt="1 плагин"></a>
+  <a href=".opencode/rules"><img src="https://img.shields.io/badge/rules-14-red" alt="14 правил"></a>
+  <a href="https://opencode.ai/docs"><img src="https://img.shields.io/badge/built%20for-opencode-f5f5f5?logo=opencode" alt="Сделано для opencode"></a>
 </p>
 
 ---
 
-## Why This Exists
+## Зачем это нужно
 
-Building a game solo with AI is powerful — but a single chat session has no structure. No one stops you from hardcoding magic numbers, skipping design docs, or writing spaghetti code. There's no QA pass, no design review, no one asking "does this actually fit the game's vision?"
+Создавать игру в одиночку с ИИ — это мощно, но у одной сессии чата нет структуры. Никто не остановит вас, когда вы хардкодите магические числа, пропускаете дизайн-документы или пишете спагетти-код. Здесь нет QA-прохода, ревью дизайна и человека, который спросит: «а это вообще соответствует видению игры?»
 
-**Claude Code Game Studios** solves this by giving your AI session the structure of a real studio. Instead of one general-purpose assistant, you get 49 specialized agents organized into a studio hierarchy — directors who guard the vision, department leads who own their domains, and specialists who do the hands-on work. Each agent has defined responsibilities, escalation paths, and quality gates.
+**OpenCode Game Studios** решает это, придавая вашей сессии структуру настоящей студии. Вместо одного универсального ассистента вы получаете 49 специализированных агентов в иерархии студии: директора, которые охраняют видение, лиды отделов, которые отвечают за свои направления, и специалисты, которые делают основную работу. У каждого агента есть зона ответственности, путь эскалации и контроль качества.
 
-The result: you still make every decision, but now you have a team that asks the right questions, catches mistakes early, and keeps your project organized from first brainstorm to launch.
-
----
-
-## Table of Contents
-
-- [What's Included](#whats-included)
-- [Studio Hierarchy](#studio-hierarchy)
-- [Slash Commands](#slash-commands)
-- [Does it produce games, or documents?](#does-it-produce-games-or-documents)
-- [Getting Started](#getting-started)
-- [Configuration](#configuration)
-- [Upgrading](#upgrading)
-- [Project Structure](#project-structure)
-- [How It Works](#how-it-works)
-- [Design Philosophy](#design-philosophy)
-- [Customization](#customization)
-- [Platform Support](#platform-support)
-- [Community](#community)
-- [Supporting This Project](#supporting-this-project)
-- [License](#license)
+Итог: решения по-прежнему принимаете вы, но теперь у вас есть команда, которая задаёт правильные вопросы, ловит ошибки рано и держит проект в порядке от первого брейншторма до релиза.
 
 ---
 
-## What's Included
+## Содержание
 
-| Category | Count | Description |
+- [Что входит](#что-входит)
+- [Иерархия студии](#иерархия-студии)
+- [Slash-команды](#slash-команды)
+- [Это делает игры или документы?](#это-делает-игры-или-документы)
+- [Начало работы](#начало-работы)
+- [Настройка](#настройка)
+- [Обновление](#обновление)
+- [Структура проекта](#структура-проекта)
+- [Как это работает](#как-это-работает)
+- [Философия дизайна](#философия-дизайна)
+- [Кастомизация](#кастомизация)
+- [Поддержка платформ](#поддержка-платформ)
+- [Сообщество](#сообщество)
+- [Поддержка проекта](#поддержка-проекта)
+- [Лицензия](#лицензия)
+
+---
+
+## Что входит
+
+| Категория | Количество | Описание |
 |----------|-------|-------------|
-| **Agents** | 49 | Specialized subagents across design, programming, art, audio, narrative, QA, and production |
-| **Skills** | 74 | Slash commands for every workflow phase (`/start`, `/design-system`, `/create-epics`, `/create-stories`, `/dev-story`, `/story-done`, etc.) |
-| **Hooks** | 15 | Automated validation on commits, pushes, asset changes, design-doc reads, writes and registries, session lifecycle, agent audit trail, and gap detection |
-| **Rules** | 14 | Path-scoped coding standards enforced when editing gameplay, engine, AI, UI, network code, scene and asset files, and more |
-| **Templates** | 62 | Document templates for GDDs, UX specs, ADRs, sprint plans, HUD design, accessibility, and more |
+| **Агенты** | 49 | Специализированные субагенты для дизайна, программирования, арта, звука, сюжета, QA и продакшена (`.opencode/agents/`) |
+| **Навыки** | 74 | Рабочие навыки, которые вызывает opencode, по папке на каждый (`.opencode/skills/`) |
+| **Команды** | 74 | Slash-команды (`/start`, `/design-system`, `/create-epics`, `/dev-story`, `/story-done` и другие) в `.opencode/commands/` |
+| **Плагин** | 1 | Мост для хуков: commit, push, изменения ассетов, чтение дизайн-доков, запись, контекст сессии и компакция (`.opencode/plugins/game-studios.ts`) |
+| **Правила** | 14 | Стандарты кода, привязанные к путям и загружаемые через `opencode.json` -> `instructions` |
+| **Шаблоны** | 62 | Шаблоны документов для GDD, UX-спецификаций, ADR, планов спринтов, HUD, доступности и другого |
 
-## Studio Hierarchy
+## Иерархия студии
 
-Agents are organized into three tiers, matching how real studios operate:
+Агенты делятся на три уровня — так же, как в настоящих студиях:
 
 ```
-Tier 1 — Directors
+Уровень 1 — Директора
   creative-director    technical-director    producer
 
-Tier 2 — Department Leads
+Уровень 2 — Лиды отделов
   game-designer        lead-programmer       art-director
   audio-director       narrative-director    qa-lead
   release-manager      localization-lead
 
-Tier 3 — Specialists
+Уровень 3 — Специалисты
   gameplay-programmer  engine-programmer     ai-programmer
   network-programmer   tools-programmer      ui-programmer
   systems-designer     level-designer        economy-designer
@@ -84,341 +88,354 @@ Tier 3 — Specialists
   live-ops-designer    community-manager
 ```
 
-Each agent declares a model in its frontmatter: the three directors ask for
-Opus, `lead-programmer` and fifteen specialists name Sonnet, and the remaining thirty
-**inherit your session's model**. Treat the tiers as seniority of role, not as
-a billing plan — most of the studio runs on whatever model you are already using.
+У каждого агента есть уровень: директора — глубокий, `lead-programmer` и
+движковые специалисты — стандартный, остальные **наследуют модель вашей
+сессии**. В этом порте нет привязок к моделям конкретного вендора, поэтому
+студия работает на том провайдере, который у вас уже есть. Как привязать
+уровень к модели провайдера — см. `.opencode/docs/model-tiers.md`.
 
-### Engine Specialists
+### Движковые специалисты
 
-The template includes agent sets for all three major engines. Use the set that matches your project:
+В шаблон входят наборы агентов для трёх основных движков. Используйте тот, что соответствует вашему проекту:
 
-| Engine | Lead Agent | Sub-Specialists |
+| Движок | Ведущий агент | Суб-специалисты |
 |--------|-----------|-----------------|
-| **Godot 4** | `godot-specialist` | GDScript, Shaders, GDExtension |
-| **Unity** | `unity-specialist` | DOTS/ECS, Shaders/VFX, Addressables, UI Toolkit |
-| **Unreal Engine 5** | `unreal-specialist` | GAS, Blueprints, Replication, UMG/CommonUI |
+| **Godot 4** | `godot-specialist` | GDScript, шейдеры, GDExtension |
+| **Unity** | `unity-specialist` | DOTS/ECS, шейдеры/VFX, Addressables, UI Toolkit |
+| **Unreal Engine 5** | `unreal-specialist` | GAS, Blueprints, репликация, UMG/CommonUI |
 
-## Slash Commands
+## Slash-команды
 
-Type `/` in Claude Code to access all 74 skills:
+Введите `/` в opencode, чтобы получить доступ ко всем 74 командам (каждая
+загружает соответствующий навык):
 
-**Onboarding & Navigation**
+**Онбординг и навигация**
 `/start` `/help` `/project-stage-detect` `/setup-engine` `/adopt` `/settings`
 
-**Game Design**
+**Геймдизайн**
 `/brainstorm` `/map-systems` `/design-system` `/quick-design` `/review-all-gdds` `/propagate-design-change`
 
-**Art & Assets**
+**Арт и ассеты**
 `/art-bible` `/asset-spec` `/asset-audit`
 
-**UX & Interface Design**
+**UX и интерфейсы**
 `/ux-design` `/ux-review`
 
-**Architecture**
+**Архитектура**
 `/create-architecture` `/architecture-decision` `/architecture-review` `/create-control-manifest`
 
-**Stories & Sprints**
+**Истории и спринты**
 `/create-epics` `/create-stories` `/dev-story` `/sprint-plan` `/sprint-status` `/story-readiness` `/story-done` `/estimate`
 
-**Reviews & Analysis**
+**Ревью и анализ**
 `/design-review` `/code-review` `/balance-check` `/content-audit` `/scope-check` `/perf-profile` `/tech-debt` `/gate-check` `/consistency-check` `/security-audit`
 
-**QA & Testing**
+**QA и тестирование**
 `/qa-plan` `/smoke-check` `/soak-test` `/regression-suite` `/test-setup` `/test-helpers` `/test-evidence-review` `/test-flakiness` `/skill-test` `/skill-improve`
 
-**Production**
+**Продакшен**
 `/milestone-review` `/retrospective` `/bug-report` `/bug-triage` `/reverse-document` `/playtest-report`
 
-**Release**
+**Релиз**
 `/release-checklist` `/launch-checklist` `/changelog` `/patch-notes` `/hotfix` `/day-one-patch`
 
-**Creative & Content**
+**Творчество и контент**
 `/prototype` `/vertical-slice` `/onboard` `/localize`
 
-**Team Orchestration** (coordinate multiple agents on a single feature)
+**Оркестрация команды** (несколько агентов на одну фичу)
 `/team-combat` `/team-narrative` `/team-ui` `/team-release` `/team-polish` `/team-audio` `/team-level` `/team-live-ops` `/team-qa`
 
-## Does it produce games, or documents?
+## Это делает игры или документы?
 
-A fair question, and the answer is a measurement rather than a sample project.
-Four games were built from one brief at different `modes.rigor` levels and the
-documents each wrote **before its first line of game code** were counted:
+Справедливый вопрос. Ответ — измерение, а не пример проекта. Четыре игры были
+собраны по одному брифу на разных уровнях `modes.rigor`, и для каждой
+посчитали, сколько документов она написала **до первой строки игрового кода**:
 
-| `modes.rigor` | Docs before first line of game code | Time |
+| `modes.rigor` | Документов до первой строки кода | Время |
 |---|---:|---:|
-| `minimal` | **1** (the one-page brief) | 0 min |
-| `standard` | 30 | 58 min |
+| `minimal` | **1** (одностраничный бриф) | 0 мин |
+| `standard` | 30 | 58 мин |
 
-All of them produced a running, tested game. Two blind reviewers and a human
-playtest then ranked the `standard` build **last** — the extra 29 documents
-bought traceability, not a better game.
+Все они дали играбельную и протестированную игру. Два слепых ревьюера и
+живой плейтест затем поставили сборку `standard` на **последнее** место:
+дополнительные 29 документов дали трассируемость, а не лучшую игру.
 
-### It runs the game and looks at it
+### Он запускает игру и смотрит на неё
 
-The measurement above is about cost. The other half is whether the thing works,
-and for a game that means someone has to *look* at it — a passing test says
-nothing about a menu drawn off-screen. So a story that changes anything the
-player sees is not closed until the game has been launched, observed, and a
-screenshot retained in `production/qa/evidence/`. A parse check is not a run.
-This holds at every rigor level, including `minimal`, where automated tests are
-waived but the look is not.
+Измерение выше — про стоимость. Вторая половина — работает ли штука, а для
+игры это значит, что кто-то должен на неё *посмотреть*: проходящий тест ничего
+не говорит о меню, нарисованном за экраном. Поэтому история, меняющая что-то
+видимое игроку, не закрывается, пока игру не запустили, не посмотрели и не
+сохранили скриншот в `production/qa/evidence/`. Проверка парсинга — это не
+запуск. Это действует на любом уровне rigor, включая `minimal`, где
+автотесты не обязательны, а взгляд — обязателен.
 
-The games themselves are deliberately **not** shipped here: this is a template
-you clone to start your own project, and somebody else's game in your repo is
-clutter, not evidence.
+Сами игры сюда намеренно **не** входят: это шаблон, который вы клонируете под
+свой проект, а чужая игра в вашем репозитории — мусор, а не доказательство.
 
-## Getting Started
+## Начало работы
 
-### Prerequisites
+### Требования
 
 - [Git](https://git-scm.com/)
-- [Claude Code](https://code.claude.com/docs/en/setup) — the native installer is recommended (`npm install -g @anthropic-ai/claude-code` also works, on Node.js 22+)
-- [Python 3](https://www.python.org/) — reads `project.yaml` for every skill and hook; without it every setting silently falls back to its default
-- Bash — runs every hook; built into macOS and Linux, and on Windows it comes with [Git for Windows](https://git-scm.com/downloads/win)
-- **Recommended**: [jq](https://jqlang.github.io/jq/) (for hook validation)
+- [opencode](https://opencode.ai/docs) — рекомендуется нативный установщик (`npm install -g opencode-ai` тоже работает, Node.js 22+)
+- [Python 3](https://www.python.org/) — читает `project.yaml` для каждого навыка и хука; без него любая настройка молча откатывается к значению по умолчанию
+- Bash — запускает хуки; есть в macOS и Linux, в Windows ставится вместе с [Git for Windows](https://git-scm.com/downloads/win)
+- **Рекомендуется**: [jq](https://jqlang.github.io/jq/) (для валидации в хуках)
 
-Hooks fail gracefully if optional tools are missing — you just lose validation — with one deliberate exception: a commit that stages data JSON is blocked when there is no Python to validate it.
+Если необязательных инструментов нет, хуки деградируют аккуратно — вы просто
+теряете валидацию. Одно исключение: коммит, добавляющий data-JSON,
+блокируется, когда нечем его проверить (нет Python).
 
-### Setup
+### Установка
 
-1. **Clone or use as template**:
+1. **Склонируйте репозиторий или используйте его как шаблон**:
    ```bash
-   git clone https://github.com/Donchitos/Claude-Code-Game-Studios.git my-game
+   git clone https://github.com/VitaliySuslin/Open-Code-Game-Studios.git my-game
    cd my-game
    ```
 
-2. **Open Claude Code in the project's root folder** (the one holding
-   `CLAUDE.md` and `project.yaml`) and start a session:
+2. **Откройте opencode в корневой папке проекта** (там, где лежат
+   `AGENTS.md` и `project.yaml`), и запустите сессию:
    ```bash
-   claude
+   opencode
    ```
-   Starting it in a subfolder such as `src/` skips the project's hooks, deny
-   rules and ask-first permission mode.
+   Запускайте из корня. opencode находит конфиг, поднимаясь вверх от рабочей
+   папки, но плагин и скрипты-хелперы считают пути от корня репозитория,
+   поэтому запуск из `src/` делает все пути относительными не к той папке.
 
-3. **Run `/start`** — the system asks where you are (no idea, vague concept,
-   clear design, existing work) and guides you to the right workflow. No assumptions.
+3. **Запустите `/start`** — система спросит, где вы находитесь (идеи нет,
+   смутная идея, готовый дизайн, уже есть работа), и поведёт по нужному
+   процессу. Без предположений.
 
-   Or jump directly to a specific skill if you already know what you need:
-   - `/brainstorm` — explore game ideas from scratch
-   - `/setup-engine godot 4.7` — configure your engine if you already know
-   - `/project-stage-detect` — analyze an existing project
+   Или сразу переходите к нужному навыку:
+   - `/brainstorm` — искать идею игры с нуля
+   - `/setup-engine godot 4.7` — настроить движок, если уже знаете какой
+   - `/project-stage-detect` — проанализировать существующий проект
 
-## Configuration
+## Настройка
 
-`project.yaml` at the repo root is the single source of truth for how the
-studio behaves on your project — engine, naming conventions, and a `modes`
-block that controls how much process every skill enforces. `/start` writes it
-for you; you rarely need to hand-edit it.
+`project.yaml` в корне репозитория — единственный источник правды о том, как
+студия работает с вашим проектом: движок, соглашения об именах и блок `modes`,
+который определяет, сколько процесса требует каждый навык. `/start` пишет его
+за вас; вручную редактировать почти не приходится.
 
-The one question that matters most is **`modes.rigor`** — `minimal`, `standard`,
-or `full`. It's a single front door over six separate knobs (`workflow` —
-which GDD sections are required, `docs.density`, `qa.level`,
-`story_granularity`, `review_mode` — how many director agents review your work,
-and `team.size`), so `/start` asks it once instead of six times:
+Самый важный вопрос — **`modes.rigor`**: `minimal`, `standard` или `full`.
+Это одна входная точка для шести отдельных ручек (`workflow` — какие разделы
+GDD обязательны, `docs.density`, `qa.level`, `story_granularity`,
+`review_mode` — сколько директоров проверяют вашу работу, и `team.size`),
+поэтому `/start` спрашивает один раз, а не шесть:
 
-- **`minimal`** (default) — jam-game speed. No GDDs required, terse docs, minimal QA evidence, solo review. `/start` → `/setup-engine` → `/brainstorm` (a one-page brief) → `/create-stories` → `/dev-story` ↔ `/story-done`.
-- **`standard`** — 5 required GDD sections, balanced doc depth, standard QA evidence, lean review.
-- **`full`** — all 8 GDD sections, thorough docs, full QA evidence on every story type, full director review.
+- **`minimal`** (по умолчанию) — скорость джема. GDD не обязательны, документы краткие, минимум QA-доказательств, ревью в одиночку. `/start` → `/setup-engine` → `/brainstorm` (одностраничный бриф) → `/create-stories` → `/dev-story` ↔ `/story-done`.
+- **`standard`** — 5 обязательных разделов GDD, сбалансированная глубина документов, стандартные QA-доказательства, лёгкое ревью.
+- **`full`** — все 8 разделов GDD, подробные документы, полные QA-доказательства для каждого типа истории, полное ревью директоров.
 
-`minimal` is the default because the heavier tier costs more to reach working
-code without producing a better result, and gives nothing back when someone new
-picks the project up. Raise it in one `/settings` call when your project grows
-— `/help` and `/gate-check` will suggest it when they see the signs.
+`minimal` — значение по умолчанию, потому что тяжёлый уровень дороже ведёт к
+рабочему коду и не даёт лучшего результата, а новому человеку в проекте ничего
+не возвращает. Поднимите его одним вызовом `/settings`, когда проект вырастет:
+`/help` и `/gate-check` предложат это сами, когда увидят признаки.
 
-Two escape hatches keep one setting from being a blunt instrument.
-**`system_overrides`** holds a single system to a higher standard than the rest
-of the project — your combat system gets the full treatment while everything
-else stays light. **`testing.strict`** sets, per test type (logic, integration,
-visual, UI, config), whether missing evidence blocks a story or merely warns.
+Две отдушины не дают одной настройке быть грубым инструментом.
+**`system_overrides`** держит одну систему на более высоком стандарте, чем
+остальной проект: боевая система получает полный процесс, а всё остальное
+остаётся лёгким. **`testing.strict`** задаёт по каждому типу теста (logic,
+integration, visual, UI, config), блокирует ли отсутствие доказательств
+историю или только предупреждает.
 
-Any of the six underlying knobs can still be set individually if you want a mix
-(e.g. `workflow: full` with `docs.density: terse` — comprehensive but compact).
-Two of them — `review_mode` (`full` / `lean` / `solo`) and `team.size` — are
-also **personal**: rigor sets the team-wide default, but you can override them
-per-developer in a gitignored `project.local.yaml` without touching the shared
-config. `modes.automation` (how often the AI pauses to ask before it acts) sits
-outside rigor and is likewise personally overridable.
+Любую из шести ручек можно задать отдельно, если нужна смесь (например,
+`workflow: full` с `docs.density: terse` — полно, но компактно). Две из них —
+`review_mode` (`full` / `lean` / `solo`) и `team.size` — ещё и **личные**:
+rigor задаёт командное значение по умолчанию, но их можно переопределить для
+разработчика в gitignored-файле `project.local.yaml`, не трогая общий конфиг.
+`modes.automation` (как часто ИИ останавливается и спрашивает) стоит вне rigor
+и тоже переопределяется лично.
 
-View or change any setting with the `/settings` skill:
-
-```
-/settings                              # view effective config
-/settings modes.review_mode            # view one setting
-/settings modes.rigor=full             # write to project.yaml (team-wide)
-/settings --local modes.review_mode=solo   # write to project.local.yaml (just you)
-```
-
-Full schema and per-setting behavior: `.claude/docs/effects-map.md`.
-
-## Upgrading
-
-Already using an older version of this template? See [UPGRADING.md](UPGRADING.md)
-for step-by-step migration instructions, a breakdown of what changed between
-versions, and which files are safe to overwrite vs. which need a manual merge.
-
-## Project Structure
+Просмотр и изменение настроек — через навык `/settings`:
 
 ```
-CLAUDE.md                           # Master configuration
-.claude/
-  settings.json                     # Hooks, permissions, safety rules
-  agents/                           # 49 agent definitions (markdown + YAML frontmatter)
-  skills/                           # 74 slash commands (subdirectory per skill)
-  hooks/                            # 18 scripts (bash) — 15 event hooks, two helpers they
-                                    #   source (yaml-helper.sh, update-check.sh), and one
-                                    #   opt-in diagnostic you wire yourself
-  rules/                            # 14 path-scoped coding standards
-  statusline.sh                     # Status line script (context%, model, stage, epic breadcrumb)
+/settings                              # показать действующий конфиг
+/settings modes.review_mode            # показать одну настройку
+/settings modes.rigor=full             # записать в project.yaml (для всей команды)
+/settings --local modes.review_mode=solo   # записать в project.local.yaml (только вам)
+```
+
+Полная схема и поведение каждой настройки: `.opencode/docs/effects-map.md`.
+
+## Обновление
+
+Уже используете старую версию шаблона? Смотрите [UPGRADING.md](UPGRADING.md):
+пошаговая миграция, что изменилось между версиями и какие файлы можно
+перезаписать, а какие нужно сливать вручную.
+
+## Структура проекта
+
+```
+AGENTS.md                           # Главные инструкции (загружаются каждую сессию)
+opencode.json                       # Конфиг: инструкции, путь к навыкам, права
+.opencode/
+  agents/                           # 49 определений субагентов (markdown + YAML frontmatter)
+  skills/                           # 74 навыка (подпапка на навык, SKILL.md)
+  commands/                         # 74 slash-команды, по одной на навык
+  plugins/
+    game-studios.ts                 # Мост хуков и контекст сессии
+  hooks/                            # bash-скрипты, которые запускает плагин (18)
+  scripts/                          # хелперы для навыков и хуков
+  rules/                            # 14 стандартов кода, загружаются через instructions
   docs/
-    workflow-catalog.yaml           # 7-phase pipeline definition (read by /help)
-    templates/                      # 62 document templates (+ per-section guidance)
-src/                                # Game source code (Godot). The code root is
-                                    #   ENGINE-SPECIFIC: Unity compiles only
-                                    #   Assets/, Unreal builds from Source/<Module>/
-assets/                             # Art, audio, VFX, shaders, data files
-design/                             # GDDs, narrative docs, level designs
-docs/                               # Technical documentation and ADRs
-tests/                              # Test suites (unit, integration, performance, playtest)
-tools/                              # Build and pipeline tools
-prototypes/                         # Throwaway prototypes (isolated from src/)
-production/                         # Sprint plans, milestones, release tracking
-studio-tests/                       # QA for the skills and agents themselves — see below
+    workflow-catalog.yaml           # определение пайплайна из 7 фаз (читает /help)
+    templates/                      # 62 шаблона документов (+ подсказки по разделам)
+src/                                # Исходники игры (Godot). Корень кода зависит от
+                                    #   движка: Unity собирает только Assets/,
+                                    #   Unreal — из Source/<Module>/
+assets/                             # Арт, звук, VFX, шейдеры, данные
+design/                             # GDD, нарративные документы, дизайн уровней
+docs/                               # Техническая документация и ADR
+tests/                              # Тесты (unit, integration, performance, playtest)
+tools/                              # Инструменты сборки и пайплайна
+prototypes/                         # Одноразовые прототипы (изолированы от src/)
+production/                         # Планы спринтов, вехи, учёт релиза
+studio-tests/                       # QA для самих навыков и агентов — см. ниже
 ```
 
-### Testing your customizations
+### Проверка ваших кастомизаций
 
-CCGS is a template you are meant to edit. `studio-tests/` is how
-you check that an edited or newly written skill still holds up — a catalog of all
-74 skills and 49 agents, per-category quality rubrics, behavioral specs, and
-templates for writing specs of your own.
+CCGS — шаблон, который вы будете менять. `studio-tests/` — способ проверить,
+что отредактированный или новый навык держится: каталог всех 74 навыков и 49
+агентов, рубрики качества по категориям, поведенческие спеки и шаблоны для
+своих спек.
 
 ```
-/skill-test static [name]     # structural linter — 7 compliance checks
-/skill-test category [name]   # category-specific quality rubric
-/skill-test spec [name]       # behavioral spec assertions
-/skill-test audit             # coverage report across skills and agents
-/skill-improve [name]         # test-fix-retest loop; keeps or reverts on score change
+/skill-test static [name]     # структурный линтер — 7 проверок соответствия
+/skill-test category [name]   # рубрика качества по категории
+/skill-test spec [name]       # проверки поведенческой спеки
+/skill-test audit             # отчёт о покрытии навыков и агентов
+/skill-improve [name]         # цикл тест → фикс → ретест; оставляет или откатывает
 ```
 
-It tests the *framework*, never your game — game tests live in `tests/`.
+Он тестирует *фреймворк*, а не вашу игру — тесты игры живут в `tests/`.
 
-## How It Works
+## Как это работает
 
-### Agent Coordination
+### Координация агентов
 
-Agents follow a structured delegation model:
+Агенты следуют структурной модели делегирования:
 
-1. **Vertical delegation** — directors delegate to leads, leads delegate to specialists
-2. **Horizontal consultation** — same-tier agents can consult each other but can't make binding cross-domain decisions
-3. **Conflict resolution** — disagreements escalate up to the shared parent (`creative-director` for design, `technical-director` for technical)
-4. **Change propagation** — cross-department changes are coordinated by `producer`
-5. **Domain boundaries** — agents don't modify files outside their domain without explicit delegation
+1. **Вертикальное делегирование** — директора делегируют лидам, лиды — специалистам
+2. **Горизонтальные консультации** — агенты одного уровня советуются, но не принимают обязательных междисциплинарных решений
+3. **Разрешение конфликтов** — разногласия эскалируются общему родителю (`creative-director` для дизайна, `technical-director` для техники)
+4. **Распространение изменений** — межотдельские изменения координирует `producer`
+5. **Границы доменов** — агенты не меняют файлы вне своего домена без явного делегирования
 
-### Collaborative, Not Autonomous
+### Совместно, а не автономно
 
-This is **not** an auto-pilot system. Every agent follows a strict collaboration protocol:
+Это **не** автопилот. Каждый агент следует строгому протоколу сотрудничества:
 
-1. **Ask** — agents ask questions before proposing solutions
-2. **Present options** — agents show 2-4 options with pros/cons
-3. **You decide** — the user always makes the call
-4. **Draft** — agents show work before finalizing
-5. **Approve** — nothing gets written without your sign-off
+1. **Спросить** — агенты задают вопросы до того, как предложить решение
+2. **Показать варианты** — 2–4 варианта с плюсами и минусами
+3. **Решаете вы** — решение всегда за пользователем
+4. **Черновик** — агенты показывают работу до финализации
+5. **Утверждение** — ничего не пишется без вашего согласия
 
-You stay in control. The agents provide structure and expertise, not autonomy.
+Вы остаётесь у руля. Агенты дают структуру и экспертизу, а не автономность.
 
-That is how a terminal session started at the project root behaves out of the
-box. The `guided` and `autonomous` automation settings, and Claude Code's own
-auto mode, trade some of these prompts for speed; see
-[setup-requirements.md](.claude/docs/setup-requirements.md) for the routes into
-auto mode.
+Именно так ведёт себя терминальная сессия, запущенная в корне проекта, «из
+коробки». Настройки автоматизации `guided` и `autonomous` и собственный auto
+mode opencode меняют часть этих подтверждений на скорость; маршруты в auto
+mode — в [setup-requirements.md](.opencode/docs/setup-requirements.md).
 
-### Automated Safety
+### Автоматическая безопасность
 
-**Hooks** run automatically on every session:
+**Хуки** работают через плагин `.opencode/plugins/game-studios.ts`:
 
-| Hook | Trigger | What It Does |
+| Хук | Событие opencode | Что делает |
 |------|---------|--------------|
-| `validate-commit.sh` | PreToolUse (Bash, PowerShell) | Checks for hardcoded values, TODO format, JSON validity, design doc sections — exits early if the command is not `git commit` |
-| `validate-push.sh` | PreToolUse (Bash, PowerShell) | Warns on pushes to protected branches, and on `git tag`, `git merge`, `gh release`, `butler push` and `steamcmd +run_app_build` — exits early for any other command |
-| `validate-read.sh` | PreToolUse (Read) | Refuses a whole-file read of a design doc over 40 KB and answers with its headings, so the retry reads one section (`features.read_guard`) |
-| `validate-write.sh` | PreToolUse (Write/Edit) | Warns, never blocks, when a write would break a rule the skills state: a file they never overwrite, the config guard, the prototype boundary, a localization freeze |
-| `validate-registry.sh` | PreToolUse (Write/Edit) | Warns when a write to the entity or TR-ID registry would delete or renumber an entry, or set a status its header does not list |
-| `validate-assets.sh` | PostToolUse (Write/Edit) | Checks data-file JSON under `assets/`, `Assets/` or `Content/`, and asset naming in Godot's `assets/` only — exits early if the file is under none of them |
-| `session-start.sh` | Session open | Shows current branch and recent commits for orientation |
-| `detect-gaps.sh` | Session open | Detects fresh projects (suggests `/start`) and missing design docs when code or prototypes exist |
-| `pre-compact.sh` | Before compaction | Logs the compaction (its output does not reach Claude — `session-start.sh` restores context afterwards) |
-| `notify.sh` | Permission prompt, or idle about a minute | Shows Windows toast notification via PowerShell |
-| `session-stop.sh` | Every response end, in the background | Archives `active.md` to session log and records git activity |
-| `log-agent.sh` | Agent spawned | Audit trail start — logs subagent invocation |
-| `log-agent-stop.sh` | Agent stops | Audit trail stop — completes subagent record |
-| `validate-agent-artifact.sh` | Agent stops | Warns when a subagent stops without writing the file its brief named |
-| `validate-skill-change.sh` | PostToolUse (Write/Edit) | Advises running `/skill-test` after any `.claude/skills/` change |
+| `validate-commit.sh` | bash before | Проверяет хардкод, формат TODO, валидность JSON, разделы дизайн-доков — выходит сразу, если команда не `git commit` |
+| `validate-push.sh` | bash before | Предупреждает о пушах в защищённые ветки, а также про `git tag`, `git merge`, `gh release`, `butler push` и `steamcmd +run_app_build` — выходит сразу для остальных команд |
+| `validate-read.sh` | read before | Отказывает в чтении дизайн-дока целиком, если он больше 40 КБ, и отдаёт его заголовки, чтобы повторное чтение взяло один раздел (`features.read_guard`) |
+| `validate-write.sh` | write/edit before | Предупреждает (но не блокирует), если запись нарушает правило навыков: файл, который они никогда не перезаписывают, защита конфига, граница прототипов, заморозка локализации |
+| `validate-registry.sh` | write/edit before | Предупреждает, если запись в реестр сущностей или TR-ID удалит/перенумерует запись или поставит статус, которого нет в заголовке |
+| `validate-assets.sh` | write/edit after | Проверяет JSON данных в `assets/`, `Assets/` или `Content/` и именование ассетов только в Godot `assets/` — выходит сразу, если файл не из этих папок |
+| `session-start.sh` | первый вызов модели | Показывает текущую ветку и последние коммиты для ориентации |
+| `detect-gaps.sh` | первый вызов модели | Находит свежие проекты (предлагает `/start`) и отсутствующие дизайн-доки, когда код или прототипы уже есть |
+| `pre-compact.sh` | компакция | Пишет лог компакции; плагин добавляет его вывод в контекст компакции |
+| `validate-skill-change.sh` | write/edit after | Советует запустить `/skill-test` после любого изменения в `.opencode/skills/` |
 
-> **Note**: `validate-commit.sh`, `validate-push.sh`, `validate-read.sh`, `validate-write.sh`, `validate-registry.sh`, `validate-assets.sh` and `validate-skill-change.sh` fire on every Bash, PowerShell, Read, Write or Edit tool call and exit immediately (exit 0) when the command or file path is not relevant. This is normal hook behavior — not a performance concern.
+> **Примечание**: `validate-commit.sh`, `validate-push.sh`, `validate-read.sh`, `validate-write.sh`, `validate-registry.sh`, `validate-assets.sh` и `validate-skill-change.sh` запускаются на каждый вызов bash/read/write/edit и сразу выходят (exit 0), если команда или путь не относятся к делу. Это нормальное поведение хуков, а не проблема производительности.
 
-**Permission rules** in `settings.json` auto-allow test runs and block dangerous operations (force push, `rm -rf`, reading `.env` files) in both the Bash and PowerShell tools. Read-only commands such as `git status`, `git log` and `ls` need no rule: Claude Code runs them without asking. The `git` rules match anywhere after `git`, so a git command whose text only mentions `push` followed later by ` +` or ` -f`, `clean` followed by ` -f`, or `reset` followed by `--hard` — a commit message such as `git commit -m "push + pull"` included — is denied too: reword the message.
+**Правила прав** в `opencode.json` автоматически разрешают хелперы фреймворка и
+запуск тестов и блокируют опасные операции (force push, `rm -rf`, чтение
+`.env`). Команды только на чтение, например `git status`, `git log` и `ls`,
+разрешены по шаблону. Запреты ищут совпадение в любом месте после `git`,
+поэтому коммит-сообщение, где встречается `push`, а позже ` +` или ` -f`,
+`clean` с последующим ` -f`, или `reset` с последующим `--hard`, тоже будет
+отклонён: переформулируйте сообщение.
 
-### Path-Scoped Rules
+### Правила по путям
 
-Coding standards are automatically enforced based on file location. The paths
-below are Godot's. Each rule also matches the Unity and Unreal layouts: the code
-rules match C# under `Assets/**/Gameplay/` and C++ under `Source/**/Gameplay/` (and `Core`,
-`AI`, `Networking`, `UI`), data matches JSON under `Assets/**/Data/` and
-`Content/**/Data/`, shaders match by file type, and tests match
-C# under `Assets/Tests/` and C++ under `Source/**/Tests/`.
+Стандарты кода применяются автоматически по расположению файла. Пути ниже —
+для Godot. Каждое правило покрывает и раскладку Unity/Unreal: правила кода
+ловят C# в `Assets/**/Gameplay/` и C++ в `Source/**/Gameplay/` (а также `Core`,
+`AI`, `Networking`, `UI`), данные — JSON в `Assets/**/Data/` и
+`Content/**/Data/`, шейдеры — по типу файла, тесты — C# в `Assets/Tests/` и
+C++ в `Source/**/Tests/`.
 
-| Path | Enforces |
+| Путь | Что проверяет |
 |------|----------|
-| `src/gameplay/**` | Data-driven values, delta time usage, no UI references |
-| `src/core/**` | Zero allocations in hot paths, thread safety, API stability |
-| `src/ai/**` | Performance budgets, debuggability, data-driven parameters |
-| `src/networking/**` | Server-authoritative, versioned messages, security |
-| `src/ui/**` | No game state ownership, localization-ready, accessibility |
-| `design/gdd/**` | Required sections per `modes.workflow`, formula format, edge cases |
-| `design/narrative/**` | Lore consistency, character voice, canon levels |
-| `assets/data/**/*.json` | JSON validity, naming conventions, schema rules |
-| `assets/shaders/**` | Naming conventions, performance targets, cross-platform rules |
-| `**/*.tscn`, `**/*.tres` | Scene and resource files changed in the editor where possible; safe hand-edit rules |
-| `tests/**` | Test naming, coverage requirements, fixture patterns |
-| `prototypes/**` | Relaxed standards, README required, hypothesis documented |
+| `src/gameplay/**` | Значения из данных, использование delta time, отсутствие ссылок на UI |
+| `src/core/**` | Ноль аллокаций в горячих путях, потокобезопасность, стабильность API |
+| `src/ai/**` | Бюджеты производительности, отлаживаемость, параметры из данных |
+| `src/networking/**` | Серверная авторитетность, версионированные сообщения, безопасность |
+| `src/ui/**` | UI не владеет состоянием игры, готовность к локализации, доступность |
+| `design/gdd/**` | Обязательные разделы по `modes.workflow`, формат формул, крайние случаи |
+| `design/narrative/**` | Согласованность лора, голос персонажей, уровни канона |
+| `assets/data/**/*.json` | Валидность JSON, соглашения об именах, правила схемы |
+| `assets/shaders/**` | Соглашения об именах, цели производительности, кроссплатформенность |
+| `**/*.tscn`, `**/*.tres` | Сцены и ресурсы меняются в редакторе, где возможно; правила безопасного ручного редактирования |
+| `tests/**` | Именование тестов, требования к покрытию, паттерны фикстур |
+| `prototypes/**` | Ослабленные стандарты, обязательный README, зафиксированная гипотеза |
 
-## Design Philosophy
+## Философия дизайна
 
-This template is grounded in professional game development practices:
+Шаблон опирается на профессиональные практики разработки игр:
 
-- **MDA Framework** — Mechanics, Dynamics, Aesthetics analysis for game design
-- **Self-Determination Theory** — Autonomy, Competence, Relatedness for player motivation
-- **Flow State Design** — Challenge-skill balance for player engagement
-- **Bartle Player Types** — Audience targeting and validation
-- **Verification-Driven Development** — Tests first, then implementation
+- **MDA Framework** — анализ механик, динамики и эстетики для геймдизайна
+- **Self-Determination Theory** — автономия, компетентность и связанность как мотивация игрока
+- **Flow State Design** — баланс сложности и навыка для вовлечённости
+- **Bartle Player Types** — таргетинг и проверка аудитории
+- **Verification-Driven Development** — сначала тесты, потом реализация
 
-## Customization
+## Кастомизация
 
-This is a **template**, not a locked framework. Everything is meant to be customized:
+Это **шаблон**, а не запертый фреймворк. Всё рассчитано на изменение:
 
-- **Add/remove agents** — delete agent files you don't need, add new ones for your domains
-- **Edit agent prompts** — tune agent behavior, add project-specific knowledge
-- **Modify skills** — adjust workflows to match your team's process
-- **Add rules** — create new path-scoped rules for your project's directory structure
-- **Tune hooks** — adjust validation strictness, add new checks
-- **Pick your engine** — use the Godot, Unity, or Unreal agent set (or none)
-- **Tune process weight** — `modes.rigor` and its underlying knobs in `project.yaml` (see [Configuration](#configuration)). Override per-run with `--review solo` on any skill.
+- **Добавляйте и удаляйте агентов** — удалите ненужные файлы, добавьте своих под свои домены
+- **Правьте промпты агентов** — настройте поведение, добавьте знание о проекте
+- **Меняйте навыки** — подгоните процессы под свою команду
+- **Добавляйте правила** — новые правила по путям под структуру вашего проекта
+- **Настраивайте хуки** — строгость валидации, новые проверки
+- **Выберите движок** — набор агентов Godot, Unity или Unreal (или никакой)
+- **Настройте вес процесса** — `modes.rigor` и его ручки в `project.yaml` (см. [Настройка](#настройка)). Переопределяйте на запуск через `--review solo` в любом навыке.
 
-## Platform Support
+## Поддержка платформ
 
-Primary development on **Windows 10** with Git Bash. The hooks and scripts are also tested on **macOS** — its stock bash 3.2 and BSD tools, with and without `jq` — and on **Linux**. All hooks use POSIX-compatible patterns (`grep -E`, not `grep -P`) and include fallbacks for missing tools. The `notify.sh` hook uses PowerShell for Windows toast notifications and is a no-op elsewhere — desktop notifications on macOS/Linux are not yet wired. Please file issues for any platform-specific breakage.
+Основная разработка — **Windows 10** с Git Bash. Хуки и скрипты также
+проверены на **macOS** — со штатным bash 3.2 и BSD-утилитами, с `jq` и без
+него — и на **Linux**. Все хуки используют POSIX-совместимые паттерны
+(`grep -E`, не `grep -P`) и имеют фолбэки при отсутствии инструментов. Плагин
+вызывает скрипты через `bash`; в Windows установите Git for Windows, чтобы
+`bash.exe` был в `PATH`. О проблемах конкретной платформы пишите в issues.
 
-## Community
+## Сообщество
 
-- **Discussions** — [GitHub Discussions](https://github.com/Donchitos/Claude-Code-Game-Studios/discussions) for questions, ideas, and showcasing what you've built
-- **Issues** — [Bug reports and feature requests](https://github.com/Donchitos/Claude-Code-Game-Studios/issues)
+- **Issues** — [баги и запросы функций](https://github.com/VitaliySuslin/Open-Code-Game-Studios/issues)
+- **Upstream-шаблон** — [thekingoffamily/Open-Code-Game-Studios](https://github.com/thekingoffamily/Open-Code-Game-Studios)
 
 ---
 
-## Supporting This Project
+## Поддержка проекта
 
-Claude Code Game Studios is free and open source. If it saves you time or helps you ship your game, consider supporting continued development:
+OpenCode Game Studios — бесплатный проект с открытым кодом. Если он экономит
+вам время и помогает выпустить игру, поддержите разработку:
 
 <p>
   <a href="https://www.buymeacoffee.com/donchitos3"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee"></a>
@@ -426,15 +443,16 @@ Claude Code Game Studios is free and open source. If it saves you time or helps 
   <a href="https://github.com/sponsors/Donchitos"><img src="https://img.shields.io/badge/GitHub%20Sponsors-ea4aaa?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="GitHub Sponsors"></a>
 </p>
 
-- **[Buy Me a Coffee](https://www.buymeacoffee.com/donchitos3)** — one-time support
-- **[GitHub Sponsors](https://github.com/sponsors/Donchitos)** — recurring support through GitHub
+- **[Buy Me a Coffee](https://www.buymeacoffee.com/donchitos3)** — разовая поддержка
+- **[GitHub Sponsors](https://github.com/sponsors/Donchitos)** — регулярная поддержка через GitHub
 
-Sponsorships help fund time spent maintaining skills, adding new agents, keeping up with Claude Code and engine API changes, and responding to community issues.
+Поддержка финансирует время на развитие навыков и агентов, отслеживание
+изменений opencode и API движков и ответы сообществу.
 
 ---
 
-*Built for Claude Code. Maintained and extended — contributions welcome via [GitHub Discussions](https://github.com/Donchitos/Claude-Code-Game-Studios/discussions).*
+*Сделано для opencode. Дорабатывается и расширяется — вклад приветствуется через issues.*
 
-## License
+## Лицензия
 
-MIT License. See [LICENSE](LICENSE) for details.
+MIT License. Подробности в [LICENSE](LICENSE).

@@ -19,7 +19,7 @@ after a "May I update / May I add" ask; afterwards the verdict is COMPLETE, or
 BLOCKED while conflicts remain. Every 🔴 CONFLICT is appended to
 `docs/consistency-failures.md` after a "May I append" ask, a breadcrumb is appended to
 `production/session-state/active.md`, and the skill closes with an
-`AskUserQuestion` widget (collaborative and guided modes). No director gates.
+`question` widget (collaborative and guided modes). No director gates.
 
 ---
 
@@ -27,7 +27,7 @@ BLOCKED while conflicts remain. Every 🔴 CONFLICT is appended to
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: PASS, CONFLICTS FOUND, NOT ASSESSED, COMPLETE, BLOCKED
 - [ ] The analysis phases (1–5) are read-only
@@ -49,7 +49,7 @@ required as part of the scan itself.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -73,7 +73,7 @@ Fixture defaults.
 4. No conflicts or stale entries; the report's Clean Entries line reads `✅ 5 registry entries verified across all GDDs with no conflicts.`
 5. Verdict: PASS
 6. Nothing is appended to `docs/consistency-failures.md`; the breadcrumb is appended to `production/session-state/active.md`
-7. Closes with the `AskUserQuestion` widget (Fix / Run `/design-review` / Stop)
+7. Closes with the `question` widget (Fix / Run `/design-review` / Stop)
 
 **Assertions:**
 - [ ] The in-scope GDD list (4 GDDs, non-system docs excluded) is reported before the scan
@@ -81,7 +81,7 @@ Fixture defaults.
 - [ ] Verdict is PASS when registry and GDDs agree
 - [ ] `design/registry/entities.yaml` and `docs/consistency-failures.md` are not written; the only write is the `active.md` breadcrumb
 - [ ] The breadcrumb names `docs/consistency-failures.md`, not an invented report file
-- [ ] The skill closes with the `AskUserQuestion` widget, not plain text
+- [ ] The skill closes with the `question` widget, not plain text
 
 ---
 
@@ -159,7 +159,7 @@ Fixture defaults.
 
 **Assertions:**
 - [ ] Skill outputs the empty-registry message naming `/design-system`
-- [ ] Verdict is NOT ASSESSED, naming the empty registry as the reason — never PASS, CONFLICTS FOUND, COMPLETE or BLOCKED, and never no verdict at all (`.claude/rules/skill-authoring.md` obligation 1)
+- [ ] Verdict is NOT ASSESSED, naming the empty registry as the reason — never PASS, CONFLICTS FOUND, COMPLETE or BLOCKED, and never no verdict at all (`.opencode/rules/skill-authoring.md` obligation 1)
 - [ ] No file is written, including `production/session-state/active.md`
 - [ ] Skill does NOT crash or produce a partial report
 
@@ -326,7 +326,7 @@ Fixture defaults.
 - [ ] No director gates — the review mode is not an input
 - [ ] Registry writes are gated by "May I update" / "May I add"; entries are never deleted (`status: deprecated` instead)
 - [ ] Every 🔴 CONFLICT is appended to `docs/consistency-failures.md` after a "May I append" ask that names it
-- [ ] Closes with `AskUserQuestion` in collaborative and guided modes; in autonomous mode prints findings and records via `log_decision`
+- [ ] Closes with `question` in collaborative and guided modes; in autonomous mode prints findings and records via `log_decision`
 
 ---
 

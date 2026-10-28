@@ -10,8 +10,8 @@ No gate IDs assigned. Escalates critical vulnerabilities to technical-director.
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references anti-cheat / security / vulnerability assessment)
-- [ ] `tools:` list includes Read, Write, Edit, Bash, Glob, Grep
-- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] `permission:` list includes Read, Write, Edit, Bash, Glob, Grep
+- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.opencode/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over game logic design or server deployment
 
 ---

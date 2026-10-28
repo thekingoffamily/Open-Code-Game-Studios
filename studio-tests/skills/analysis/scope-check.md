@@ -24,10 +24,10 @@ No files are written and no director gates are invoked.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: PASS, CONCERNS, NOT ASSESSED, FAIL
-- [ ] Does NOT require "May I write" language (the skill states it is read-only and `allowed-tools` has no Write/Edit)
+- [ ] Does NOT require "May I write" language (the skill states it is read-only and the skill never writes files)
 - [ ] Has a next-step handoff (Phase 5: follow-up per verdict)
 
 ---
@@ -42,7 +42,7 @@ None. Scope check is a read-only advisory skill; no gates are invoked.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -201,7 +201,7 @@ Fixture defaults.
 - [ ] Emits NOT ASSESSED instead of a percentage when the baseline has no items or the current state cannot be read
 - [ ] Does not write any files
 - [ ] No director gates are invoked
-- [ ] Declares `model: haiku` (when a declared tier is used: `.claude/docs/model-tiers.md`)
+- [ ] Declares the documented Haiku tier (when a declared tier is used: `.opencode/docs/model-tiers.md`)
 
 ---
 

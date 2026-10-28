@@ -34,7 +34,7 @@ COMPLETE, or CONCERNS when BLOCKING items were found.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: ADEQUATE, INCOMPLETE, MISSING, NOT ASSESSED, and the run-level COMPLETE / CONCERNS
 - [ ] Contains "May I write" language for the optional `production/qa/evidence-review-[date].md`
@@ -53,7 +53,7 @@ None. Test evidence review is an advisory quality skill; no gates are invoked.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---

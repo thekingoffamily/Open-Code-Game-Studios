@@ -10,8 +10,8 @@
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references Unreal Engine)
-- [ ] `tools:` reads Read, Glob, Grep, Write, Edit, Bash and `Agent`, and its body tells it to start only its four sub-specialists (ue-gas, ue-blueprint, ue-replication, ue-umg), since a type list in a subagent's `tools` is ignored
-- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] `permission:` reads Read, Glob, Grep, Write, Edit, Bash and `Agent`, and its body tells it to start only its four sub-specialists (ue-gas, ue-blueprint, ue-replication, ue-umg), since a type list in a subagent's `tools` is ignored
+- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.opencode/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority outside its declared domain (no art, no server infra)
 
 ---
@@ -78,5 +78,5 @@
 ## Coverage Notes
 - No automated runner exists for agent behavior tests — these are reviewed manually or via `/skill-test`
 - Version-awareness (Case 3, Case 5) is the highest-risk failure mode for this agent; test regularly when engine version changes
-- Cases 3 and 5 pass only if the agent is directed to `docs/engine-reference/unreal/`; `CLAUDE.md` imports the Unreal `VERSION.md` only after `/setup-engine` selects Unreal, so the agent's own file must carry that direction
+- Cases 3 and 5 pass only if the agent is directed to `docs/engine-reference/unreal/`; `AGENTS.md` imports the Unreal `VERSION.md` only after `/setup-engine` selects Unreal, so the agent's own file must carry that direction
 - Case 4 integration with lead-programmer is a coordination test, not a technical correctness test

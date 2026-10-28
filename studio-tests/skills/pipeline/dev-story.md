@@ -34,7 +34,7 @@ the run-and-observe step runs at every level.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains status keywords: BLOCKED, INCOMPLETE, In Progress, NOT VERIFIED
 - [ ] Contains "May I write" collaborative protocol language (its own asks for the files it writes; source and tests delegated to sub-agents)
@@ -57,7 +57,7 @@ step at `standard`/`full`.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -180,7 +180,7 @@ The `full` column of the file-check table has its own STOP rule, so the
 **Expected behavior:**
 1. `Grep "^## (Status|Last Verified|Date)"` on ADR-0004 reads Accepted and a
    `Last Verified` date different from the story's `ADR Version`
-2. `AskUserQuestion`: "Story was written against ADR v[story-date]. The ADR is now
+2. `question`: "Story was written against ADR v[story-date]. The ADR is now
    v[current-date]. Its decision may have changed. How do you want to proceed?"
    with `[A] Re-read the changed ADR sections…` (naming the refresh of this story's
    ADR summary and ADR Version) / `[B] Implement from the story's summary…` /
@@ -328,7 +328,7 @@ The `full` column of the file-check table has its own STOP rule, so the
 3. Verification runs `commands.smoke` and reports its exit code
 4. Before launching, globs `Assets/**/ScreenshotOnArg.cs`, finds none and asks
    "May I write `Assets/Scripts/ScreenshotOnArg.cs`?"; on yes writes the script
-   verbatim from `.claude/docs/run-and-observe.md`
+   verbatim from `.opencode/docs/run-and-observe.md`
 5. Launches the built player with `--scene`/`--screenshot` and prints
    `Run result: OBSERVED — …` with the retained path
 
@@ -344,7 +344,7 @@ The `full` column of the file-check table has its own STOP rule, so the
 ### Case 7: Engine unset — the code root is unresolved, nothing is written
 
 **Fixture:**
-- `project.yaml` has no `engine` block; `.claude/docs/technical-preferences.md`
+- `project.yaml` has no `engine` block; `.opencode/docs/technical-preferences.md`
   reads `Engine: [TO BE CONFIGURED]`
 - The project has none of `src/`, `Assets/` or `Source/`
 - `modes.workflow: minimal`; the story is Type Logic
@@ -352,7 +352,7 @@ The `full` column of the file-check table has its own STOP rule, so the
 **Input:** `/dev-story production/epics/[slug]/story-001-[slug].md`
 
 **Expected behavior:**
-1. The code root cannot be resolved (`.claude/docs/code-root-resolution.md`: no
+1. The code root cannot be resolved (`.opencode/docs/code-root-resolution.md`: no
    `engine.name`, no legacy `Engine:` value, no single unambiguous root in the tree)
 2. No source file is written, and the output says the code root is unresolved
 
@@ -470,7 +470,7 @@ The `full` column of the file-check table has its own STOP rule, so the
 
 - [ ] Does NOT write source code directly — delegates to specialist agents
 - [ ] Resolves the workflow tier and verifies required inputs before any agent is spawned
-- [ ] Mismatch and dependency prompts (`AskUserQuestion`) come before implementation
+- [ ] Mismatch and dependency prompts (`question`) come before implementation
 - [ ] Every file the skill itself writes — story fields, `sprint-status.yaml`, a dependency's `Status`, a Config/Data file, `ScreenshotOnArg.cs` — follows an ask that names it; only the `active.md` checkpoint is written without one
 - [ ] Code is written only under the resolved code root; an unresolved root writes nothing
 - [ ] Skipped phases and dropped briefing items are announced in the output

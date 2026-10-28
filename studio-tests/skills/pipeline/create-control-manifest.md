@@ -24,7 +24,7 @@ when the user declines the write.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: COMPLETE, BLOCKED
 - [ ] Contains "May I write" collaborative protocol language (for the control manifest)
@@ -37,7 +37,7 @@ Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 ## Director Gate Checks
 
 One gate: **TD-MANIFEST** (`technical-director`,
-`.claude/docs/director-gates/td-manifest.md`), spawned after the user accepts the
+`.opencode/docs/director-gates/td-manifest.md`), spawned after the user accepts the
 Phase 4 rule summary and before the Phase 5 write ask.
 
 - `full` → spawned; receives the Control Manifest Preview, the ADRs covered, the
@@ -45,7 +45,7 @@ Phase 4 rule summary and before the Phase 5 write ask.
 - `lean` → skipped; output notes "TD-MANIFEST skipped — Lean mode."
 - `solo` → skipped; output notes "TD-MANIFEST skipped — Solo mode."
 
-Verdict handling: APPROVE → proceed to the write ask; CONCERNS → `AskUserQuestion`
+Verdict handling: APPROVE → proceed to the write ask; CONCERNS → `question`
 with `Revise flagged rules` / `Accept and proceed` / `Discuss further`; REJECT →
 the manifest is not written, flagged rules are fixed and the summary re-presented;
 NOT ASSESSED [missing input] → never read as APPROVE: the missing input is named,
@@ -58,7 +58,7 @@ then supplied and the gate re-run, or the run goes on with
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---

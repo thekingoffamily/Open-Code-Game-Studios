@@ -1,6 +1,6 @@
-# Contributing to Claude Code Game Studios
+# Contributing to OpenCode Game Studios
 
-CCGS is a coordination framework for indie game development using Claude Code.
+CCGS is a coordination framework for indie game development using opencode.
 Contributions are welcome — bug fixes, new skills that fill a real gap, agent
 improvements, and hook fixes. PRs that don't fit the framework's direction will
 be closed without lengthy explanation.
@@ -25,20 +25,26 @@ merged here — keep those in your own repo.
 These are the things that will get your PR rejected if you miss them.
 
 **Skill files**
-- Skills live in `.claude/skills/<name>/SKILL.md` — the subdirectory format is
-  required. Flat `.md` files are silently ignored by Claude Code.
-- SKILL.md must include YAML frontmatter: `name`, `description`,
-  `argument-hint`, `allowed-tools`, and `model`
-- Model tier: `haiku` for read-only status checks, `opus` for multi-document
-  synthesis and phase gates, `sonnet` for everything else
+- Skills live in `.opencode/skills/<name>/SKILL.md` — the subdirectory format is
+  required. Flat `.md` files are silently ignored by opencode.
+- SKILL.md frontmatter must have `name` (matching the folder) and `description`
+  (what it does and when to use it). opencode ignores other keys.
+- Every user-facing skill also ships as `.opencode/commands/<name>.md`, whose
+  body loads the skill and forwards `$ARGUMENTS`.
+- A skill asks the model to run helpers explicitly (`bash .opencode/scripts/...`);
+  opencode has no skill-shell preprocessing.
 
-**Hooks**
+**Hooks and plugins**
+- Event wiring lives in `.opencode/plugins/game-studios.ts`; the validation
+  logic stays in the shell scripts it calls.
 - Use `grep -E` — never `grep -P` (Perl regex breaks on Windows Git Bash)
 - Include fallbacks for systems without `jq` or `python` installed
-- Hooks run on every session start — they must exit quickly and gracefully
+- Hooks run on every matching tool call — they must exit quickly and gracefully
   (`exit 0`) when not applicable
 
 **Agents**
+- Agent frontmatter uses `mode: subagent`, `description`, and a `permission`
+  block; `tools`/`disallowedTools` are not opencode keys.
 - New agents must include a **Collaboration Protocol** section that describes
   how the agent asks questions and defers decisions to the user
 - Agents must not modify files outside their documented domain without explicit
@@ -61,7 +67,7 @@ or writing files unilaterally, it won't be merged.
 
 ## Testing Your Changes
 
-Run it in a Claude Code session and confirm it works end-to-end. For skills,
+Run it in a opencode session and confirm it works end-to-end. For skills,
 invoke the skill and verify the output matches what the skill claims to do.
 For hooks, trigger the relevant event and confirm the hook fires correctly
 and exits cleanly.

@@ -31,7 +31,7 @@ ends with verdict `COMPLETE`. There are no director gates.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keyword: `COMPLETE`
 - [ ] Contains "May I write" language per section, and "May I create" for the skeleton
@@ -54,7 +54,7 @@ to the user, and this session owns every file write.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -77,7 +77,7 @@ Fixture defaults.
 3. Input methods are derived from the `platform` block (keyboard/mouse and gamepad) — the user is not asked
 4. The context summary is shown, then "Anything else I should read before we start, or shall we proceed?"
 5. No existing file, so: "May I create the skeleton file at `design/ux/hud.md`?" — on yes, writes the HUD skeleton and updates `production/session-state/active.md`. The skeleton carries every section `/ux-review`'s HUD checklist requires, so the finished spec can pass that review
-6. Phase 4 reads `.claude/skills/ux-design/references/sections-hud.md` and never the other two per-mode files (`sections-ux-spec.md`, `sections-patterns.md`); if a section needs depth, the HUD design guide is read one section at a time, never whole
+6. Phase 4 reads `.opencode/skills/ux-design/references/sections-hud.md` and never the other two per-mode files (`sections-ux-spec.md`, `sections-patterns.md`); if a section needs depth, the HUD design guide is read one section at a time, never whole
 7. Each section: draft → "Does this capture the [section name] correctly?" → "May I write the [section name] section to `design/ux/hud.md`?" → Edit replacing that section's placeholder
 8. Phase 5 presents the Cross-Reference Check results
 9. Phase 6 states the spec should be validated with `/ux-review` before implementation, then asks with four options (run `/ux-review` now / design another screen / update the pattern library / stop); verdict `COMPLETE`
@@ -132,7 +132,7 @@ Fixture defaults.
 1. The skill warns: "No game concept found. Run `/brainstorm` first to establish the game's foundation before designing UX." and continues only if the user asks
 2. It notes the missing journey: "No player journey map found at `design/player-journey.md`. Designing without it means we'll be making assumptions about player context…"
 3. The context summary shows "Journey phase(s): unknown — no journey map"
-4. The spec's Open Questions section records: "Player journey map not yet created. Author it from the template at `.claude/docs/templates/player-journey.md`…"
+4. The spec's Open Questions section records: "Player journey map not yet created. Author it from the template at `.opencode/docs/templates/player-journey.md`…"
 5. The skill never tells the user to run `/ux-design` Phase 2b to create the journey map
 
 **Assertions:**

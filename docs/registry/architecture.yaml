@@ -30,7 +30,7 @@
 #   All forbidden patterns: Grep pattern="^  - pattern:" (forbidden_patterns section)
 #   Superseded entries:     Grep pattern="superseded_by: ADR-"
 #
-# LAYOUT: the one shape .claude/scripts/registry.sh reads. Each section is a
+# LAYOUT: the one shape .opencode/scripts/registry.sh reads. Each section is a
 #   key at column 0 holding a block list, or [] while it is empty. Each entry
 #   starts with its section's name key ("- state:", "- contract:", "- system:"
 #   or "- target_fps:" for the frame budget, "- purpose:", "- pattern:"), the

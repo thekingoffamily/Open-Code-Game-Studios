@@ -10,10 +10,10 @@
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Frontmatter has all required fields (`name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`)
+- [ ] Frontmatter has both required fields (`name`, `description`), and `name` matches the folder
 - [ ] 2+ phase headings found
 - [ ] Contains the skill's verdict keywords — any that `/skill-test static` Check 3 accepts (gate or review verdicts, go/no-go verdicts, or a severity scale), plus `NOT ASSESSED` when anything depends on the verdict; none needed when the skill outputs an artifact rather than a judgement
-- [ ] If `allowed-tools` includes Write/Edit: `"May I write"` language present
+- [ ] If the skill writes files: `"May I write"` language present
 - [ ] Next-step handoff section present at end
 
 ---
@@ -33,7 +33,7 @@ Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---

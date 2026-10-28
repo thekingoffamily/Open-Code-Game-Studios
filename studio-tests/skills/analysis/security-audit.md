@@ -32,7 +32,7 @@ report. No director gates are invoked.
 
 Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: CLEAR TO SHIP, FIX BEFORE SHIPPING, DO NOT SHIP, NOT ASSESSED, and the severities CRITICAL / HIGH / MEDIUM / LOW
 - [ ] Contains "May I write" language naming `production/security/security-audit-[date]-[scope].md`
@@ -52,7 +52,7 @@ any review mode.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
